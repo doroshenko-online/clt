@@ -5,7 +5,3 @@ import time
 import datetime
 
 # Create your views here.
-
-def index(request):
-    clients = Client.objects.all()
-    return HttpResponse(request)

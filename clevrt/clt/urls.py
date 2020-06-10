@@ -20,6 +20,6 @@ from . import views
 app_name = 'clt'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    #path('', views.index, name='index'),
     path('tasks/', include('tasks.urls'))
 ]
