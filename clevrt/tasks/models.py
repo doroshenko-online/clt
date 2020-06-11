@@ -25,6 +25,7 @@ class Task(models.Model):
     ]
 
     name = models.CharField(max_length=100, verbose_name='название задачи')
+    client = models.ForeignKey(models.Client, on_delete=models.DO_NOTHING, verbose_name='клиент')
     category = models.OneToOneField(Task_Category, on_delete=models.DO_NOTHING, verbose_name='категория')
     username_create = models.ForeignKey(User, related_name='username_create', max_length=20, on_delete=models.DO_NOTHING, verbose_name='создал задачу')
     who_permit = models.ManyToManyField(User, verbose_name='добавленные пользователи')
