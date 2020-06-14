@@ -21,8 +21,10 @@ from . import views
 app_name = 'clt'
 
 urlpatterns = [
-    #path('', views.index, name='index'),
+    #test main page
+    path('', views.redirect_to_test, name='index'),
+
     path('tasks/', include('tasks.urls')),
-    path('login/', views.LoginFormView.as_view(), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('test/', views.Test.as_view(), name='test')
 ]
