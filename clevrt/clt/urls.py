@@ -17,14 +17,19 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib.auth import views as auth_view
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+import os
+from django.contrib.staticfiles.views import serve as serve_static
+from django.views.decorators.cache import never_cache
 
 app_name = 'clt'
 
 urlpatterns = [
     #test main page
-    path('', views.redirect_to_test, name='index'),
-
+    path('', views.Index.as_view(), name='index'),
+    never_cache(serve_static)),
     path('tasks/', include('tasks.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('test/', views.Test.as_view(), name='test')
-]
+] + static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static"))
