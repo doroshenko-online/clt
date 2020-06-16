@@ -6,11 +6,179 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test figma</title>
-    <link rel="stylesheet" href="{% static 'clt/css/reset.css' %}">
+    <title>Discover Amazing places in Japan</title>
     <link rel="stylesheet" href="{% static 'clt/css/style.css' %}">
 </head>
 <body>
-    <div class="item"></div>
+    <!--Header start-->
+    <header class="header">
+        <div class="wrapper">
+            <div class="header__wrapper">
+
+                <div class="header__logo">
+                    <a href="/" class="heaer__logo-link">
+                        <img src="{% static 'clt/img/svg/odigo-Logo.svg' %}" alt="Discover Amazing places in Japan" class="header__logo-pic" />
+                    </a>
+                </div>
+
+                <nav class="header__nav">
+                    <ul class="header__list">
+                        <li class="header__item">
+                            <a href="#!" class="header__link">Articles</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#!" class="header__link">Locations</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#!" class="header__link">Videos</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#!" class="header__link">Sign in</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--Header end-->
+
+    <main class="main">
+        <!--Intro start-->
+        <section class="intro">
+            <div class="wrapper">
+                <h1 class="intro__title">
+                    Discover Amazing places in Japan
+                </h1>
+                <p class="intro__subtitle">
+                    Jump off balcony, onto stranger's head. Chase ball of string hide when guests come over. Being gorgeous with belly side up i could pee on this if i had the energy but under the bed, for attack the child, open the door,
+                </p>
+
+                <form class="search-form">
+                    <fieldset class="search-form__wrap">
+                        <p class="search-form__info">
+                            <input type="text" name="user_like_to_do" class="search-form__field" placeholder="What would you like to do?" />
+                            <input type="text" name="user_like_to_go" class="search-form__field" placeholder="Where would you like to go?" />
+                            <button type="submit" class="search-form__submit">search</button>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+        <!--Intro end-->
+        <!--Benefits start-->
+        <section class="benefits">
+            <div class="benefits__wrap">
+                <h2 class="benefits__title">
+                    Benefits of Odigo
+                </h2>
+
+                <div class="benefits-cards">
+
+                    <div class="benefits-card">
+                        <div class="benefits-card__pic">
+                            <img src="{% static 'clt/img/svg/church_Icon.svg' %}" alt="Welcome to Odigo!" class="benefits-card__thumb" />
+                        </div>
+                        <h3 class="benefits-card__title">
+                            Welcome to Odigo!
+                        </h3>
+                        <p class="benefits-card__desc">
+                            Jump off balcony, onto stranger's head. Chase ball of string hide when guests come over.
+                        </p>
+                        <a href="#!" class="benefits-card__more">LEARN MORE</a>
+                    </div>
+
+                    <div class="benefits-card">
+                        <div class="benefits-card__pic">
+                            <img src="{% static 'clt/img/svg/person_Icon.svg' %}" alt="Your Personal Japan Guide" class="benefits-card__thumb" />
+                        </div>
+                        <h3 class="benefits-card__title">
+                            Your Personal Japan Guide
+                        </h3>
+                        <p class="benefits-card__desc">
+                            Jump off balcony, onto stranger's head. Chase ball of string hide when guests come over.
+                        </p>
+                        <a href="#!" class="benefits-card__more">LEARN MORE</a>
+                    </div>
+
+                    <div class="benefits-card">
+                        <div class="benefits-card__pic">
+                            <img src="{% static 'clt/img/svg/building_Icon.svg' %}" alt="Promoting Local Businesses" class="benefits-card__thumb" />
+                        </div>
+                        <h3 class="benefits-card__title">
+                            Promoting Local Businesses
+                        </h3>
+                        <p class="benefits-card__desc">
+                            Jump off balcony, onto stranger's head. Chase ball of string hide when guests come over.
+                        </p>
+                        <a href="#!" class="benefits-card__more">LEARN MORE</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!--Benefits end-->
+        <!--Places start-->
+
+        <section class="places">
+            <div class="wrapper-full">
+
+                <div class="places__caption">
+                    <h2 class="places__title section__title">
+                        Get inspired for your next trip
+                    </h2>
+
+                    <a href="" class="places-view__all">VIEW ALL</a>
+                </div>
+                
+                <div class="places-cards">
+
+                    <figure class="places-card places-card__size_lg">
+                        <img src="{% static 'clt/img/jpg/place1.jpg' %}" alt="Mount Fuji" class="places-card__pic places-card__pic_size-lg" />
+                        <figcaption class="places-card__title">
+                            Mount Fuji
+                        </figcaption>
+                        <a href="#!" class="places-card__link"></a>
+                    </figure>
+
+                    <figure class="places-card places-card__size_lg">
+                        <img src="{% static 'clt/img/jpg/place2.jpg' %}" alt="Kyoto" class="places-card__pic places-card__pic_size-lg" />
+                        <figcaption class="places-card__title">
+                            Kyoto
+                        </figcaption>
+                        <a href="#!" class="places-card__link"></a>
+                    </figure>
+
+                    <figure class="places-card places-card__size_sm">
+                        <img src="{% static 'clt/img/jpg/place3.jpg' %}" alt="Tokyo" class="places-card__pic places-card__pic_size-sm" />
+                        <figcaption class="places-card__title">
+                            Tokyo
+                        </figcaption>
+                        <a href="#!" class="places-card__link"></a>
+                    </figure>
+
+                    <figure class="places-card places-card__size_sm">
+                        <img src="{% static 'clt/img/jpg/place4.jpg' %}" alt="Niigata" class="places-card__pic places-card__pic_size-sm" />
+                        <figcaption class="places-card__title">
+                            Niigata
+                        </figcaption>
+                        <a href="#!" class="places-card__link"></a>
+                    </figure>
+
+                    <figure class="places-card places-card__size_sm">
+                        <img src="{% static 'clt/img/jpg/place5.jpg' %}" alt="Sapporo" class="places-card__pic places-card__pic_size-sm" />
+                        <figcaption class="places-card__title">
+                            Sapporo
+                        </figcaption>
+                        <a href="#!" class="places-card__link"></a>
+                    </figure>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!--Places end-->
+    </main>
 </body>
 </html>
