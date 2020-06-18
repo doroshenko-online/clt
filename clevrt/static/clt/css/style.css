@@ -410,7 +410,7 @@ html {
 
 .wrapper {
     max-width: 1060px;
-    margin: 0 auto; /*������������ ����� �� ������*/
+    margin: 0 auto; /* убирает отступы */
 }
 
 .wrapper-full{
@@ -447,7 +447,7 @@ body {
 }
 
 img {
-    max-width: 100%; /*����� ����������� ������� �� ������� �� ������� ����������*/
+    max-width: 100%;
     height: auto;
 }
 
@@ -463,13 +463,13 @@ img {
 
 .header__wrapper {
     display: flex;
-    flex-wrap: wrap; /*�������� �� ������ ��������*/
-    align-items: flex-end; /*������������ �� ������ ����� �����*/
+    flex-wrap: wrap; /* позволяет элемент расположить в одной строке с блочным */
+    align-items: flex-end;
     justify-content: space-between;
-    padding-top: 56px; /*������ ������*/
+    padding-top: 56px; /* поле обводки */
 }
 
-.header__list { /* ����������� �������� */
+.header__list { /* расположение элементво в одной строке */
     display: flex;
     flex-wrap: wrap;
 }
@@ -482,7 +482,7 @@ img {
     margin-right: 0px;
 }
 
-.header__link { /* ����� ������ ���� */
+.header__link { 
     font-size: 18px;
     line-height: 24px;
     color: #ffffff;
@@ -490,7 +490,7 @@ img {
 }
 
 
-.header__link:hover, .header__link:focus, .header__link:active { /* ��������� ������ ��� ��������� */
+.header__link:hover, .header__link:focus, .header__link:active { /* прозрачность */
     opacity: .75;
 }
 
@@ -500,20 +500,20 @@ img {
 
 /* intro styles start */
 .intro{
-    min-height: 100vh; /*100 ��������� ������ ������. ����� ������ min-height, � �� height ����� � ������ ���� ������� �� ��������� �� �����, �� �� �� ����� �� ����*/
+    min-height: 100vh;
     background: url(../img/jpg/HeroBG.jpg) no-repeat center;
     background-size: cover;
-    padding-top: 263px; /*������� ���� ������ �����*/
+    padding-top: 263px; 
     padding-bottom: 223px;
 }
 
 .intro__title {
-    max-width: 619px; /*������������ ������ �����*/
+    max-width: 619px; 
     font-weight: 500;
     font-size: 50px;
     line-height: 60px;
     color: #FFFFFF;
-    margin-bottom: 22px; /**/
+    margin-bottom: 22px; 
 }
 
 .intro__subtitle {
@@ -532,7 +532,7 @@ img {
 .search-form__field {
     background: transparent url(../img/svg/circle_icon.svg) no-repeat left 6px; /*transparent[����������](��� ����� ������ ��������) - �������� background-color, ������� ����� ��������� � background*/
     background-size: 20px;
-    border: 0; /* ����, �������. border: 0; ������ ������� ���������� */
+    border: 0; /* убирает рамки */
     border-bottom: 2px solid #BFC0C5;
     margin-right: 60px;
     width: 297px;
@@ -581,9 +581,9 @@ img {
 }
 
 .benefits-cards{
-    display: grid; /* �������� ����� */
+    display: grid; /* создает сетку */
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 55px;      /* ������ ������� ����� ��������� */
+    grid-column-gap: 55px;      /* ширина между колонками */
     padding: 32px 100px 112px 100px;
 }
 
@@ -652,10 +652,10 @@ img {
 }
 
 .places__caption{
-    display: flex; /* ����������� ���� � �������� ������� � ����� ������ */
+    display: flex; 
     flex-wrap: wrap;
-    align-items: center; /* ������������ �� ������ � �� ��������� */
-    justify-content: space-between; /* ������������ �������� �� ������ ������ ����� */
+    align-items: center; /* выравнивание по центру по вертикали */
+    justify-content: space-between; /* отступы между элементами */
     margin-bottom: 37px;
 }
 
@@ -686,10 +686,10 @@ img {
 
 .places-card{
     position: relative;
-    overflow: hidden; /* ����� ��� ��������� �� ��������� ����� �������� �� ����������� ���� ���������� */
+    overflow: hidden; /* при увеличении элемента, все что выходит за родительский блок - скрывается */
 }
 
-    .places-card::after { /* ����� ������� ������� ������� ������ ��������� content */
+    .places-card::after { /* наложение на элемент дополнительных визульных эффектов */
         display: block;
         content: '';
         width: 100%;
@@ -706,17 +706,17 @@ img {
 }
 
 .places-card__size_lg {
-    grid-column: span 3; /* ������ ����������� ������� � 3 ������� */
+    grid-column: span 3; /* колличество колонок */
 }
 
 .places-card__size_sm {
-    grid-column: span 2; /* ������ ����������� ������� � 2 ������� */
+    grid-column: span 2;
 }
 
 .places-card__pic {
     width: 100%;
-    object-fit: cover; /* ��� �������������� */
-    transition: .15s all; /* ��������� ��� �������� */
+    object-fit: cover; /* при смещении контент оставляет свои пропорции */
+    transition: .15s all; /* время движения */
 }
 
 .places-card__pic_size-lg{
