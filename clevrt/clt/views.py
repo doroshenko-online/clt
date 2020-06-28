@@ -10,7 +10,7 @@ from django.views.generic.base import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Index(View):
-    template_name = 'index_test2.html'
+    template_name = 'index.html'
     def get(self, request):
         return render(request, template_name=self.template_name)
 

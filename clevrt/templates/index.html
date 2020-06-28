@@ -1,0 +1,15 @@
+{% load static %}
+{% include "base_generic.html" %}
+{% include "header.html" %}
+{% block title %}<title>Главная</title>{% endblock %}
+{% block content %}
+                 <main class="main-wrapper">
+                     <div class="last-active">
+                         <ul>
+                             <li><h2 class="title-last_active">Последняя активность</h2></li>
+                             <li class="item-last_active"><a class="client-last_active" href="#!">Client name</a><img title="ssh-connect" class="active-pic" src="{% static 'clt/img/png/ssh-button.png' %}" /></li>
+                             <li class="item-last_active"><a class="client-last_active" href="#!">Client name</a><img title="ssh-connect" class="active-pic" src="{% static 'clt/img/png/ssh-button.png' %}" /></li>
+                         </ul>
+                     </div>
+                 </main>
+{% endblock %}
