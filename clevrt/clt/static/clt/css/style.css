@@ -422,6 +422,8 @@ html {
 }
 
 body {
+    display: flex;
+    flex-wrap: wrap;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -429,19 +431,6 @@ body {
     line-height: 17px;
     color: #000000;
     background-color: #F5F5F5;
-}
-
-aside {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-}
-
-footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
 }
 
 
@@ -581,6 +570,7 @@ p {
     margin-top: 9px;
     opacity: .5;
     margin-bottom: 10px;
+    transition: 0.25s all;
 }
 
     .setting-btn:hover {
@@ -596,26 +586,6 @@ p {
     max-height: 42px;
 }
 
-.sidebar-btn {
-    position: relative;
-    margin-right: 30px;
-    max-width: 42px;
-    max-height: 42px;
-    margin-top: 9px;
-    cursor: pointer;
-}
-
-    .sidebar-btn:hover {
-        cursor: pointer;
-        transform: scale(0.9);
-        transition: 0.2s all;
-    }
-
-.sidebar-active {
-    transform: rotate(90deg);
-    transition: 0.2s all;
-}
-
 /* header styles end */
 
 /* main-page styles start */
@@ -623,17 +593,17 @@ p {
 .main-wrapper {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 14px;
-    width: 78%;
-    max-width: 1497px;
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
     margin-left: 30px;
     min-height: 650px;
-    padding-bottom: 20px;
     float: left;
 }
 
 .last-active {
     position: relative;
+    margin-top: 14px;
     width: 242px;
     top: 0;
     left: 0;
@@ -696,9 +666,9 @@ p {
 }
 
 .reminder__wrapper{
-    margin: auto;
-    margin-top: 0;
-    width: 50%;
+    margin: 0 0 auto 118px;
+    margin-top: 14px;
+    width: 52%;
 }
 
 .reminder-title__wrapper {
@@ -741,6 +711,7 @@ p {
     background: #FFFFFF;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
+    transition: 0.15s all;
 }
     .reminder:hover {
         transition: 0.15s all;
@@ -798,21 +769,18 @@ p {
 
 /* sidebar style start */
 
+
+
 .sidebar__wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0px;
-    max-height: 900px;
-    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    float: right;
+    margin-left: auto;
+    width: 20%;
     z-index: 3;
     background-color: #E8E8E8;
     transition: 0.3s all;
-}
-
-.sd-active{
-    transition: 0.3s all;
-    width: 20%;
 }
 
 .last-logs__title {
@@ -833,7 +801,12 @@ p {
     width: 100%;
     background-color: #FFF;
     margin-bottom: 20px;
+    transition: 0.2s all;
 }
+    .card:hover{
+        transition: 0.2s all;
+        transform: scale(1.1);
+    }
 
 .last-log__title-wrapper {
     margin: 5px 17px 2px;
@@ -929,6 +902,32 @@ p {
 
 /* footer style start */
 
+.footer__wrapper{
+    background: #35A0CC;
+    width: 100%;
+}
 
+.footer-content{
+    display: flex;
+    flex-wrap: wrap;
+    width: 20%;
+    margin: auto;
+}
+
+.footer-content p{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    align-items: center;
+    text-align: center;
+    color: #FDFDFD;
+}
+
+.footer-logo{
+    width: 24px;
+    height: 24px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
 
 /* footer style end */

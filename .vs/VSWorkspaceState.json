@@ -2,15 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\clevrt",
-    "\\clevrt\\clt\\static\\clt",
-    "\\clevrt\\clt\\static\\clt\\img",
-    "\\clevrt\\clt\\static\\clt\\img\\svg",
     "\\clevrt\\static",
     "\\clevrt\\static\\clt",
     "\\clevrt\\static\\clt\\css",
+    "\\clevrt\\static\\clt\\img",
     "\\clevrt\\static\\clt\\img\\png",
-    "\\clevrt\\static\\clt\\test1\\css"
+    "\\clevrt\\templates"
   ],
-  "SelectedNode": "\\clevrt\\static\\clt\\test1",
+  "SelectedNode": "\\clevrt\\templates\\footer.html",
   "PreviewInSolutionExplorer": false
 }
