@@ -8,11 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block title %}{% endblock %}
     <link rel="stylesheet" href="{% static 'clt/css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'clt/img/png/logo-fav.png' %}" />
 </head>
 <body>
+    {% include "header.html" %}
     {% block header %}{% endblock %}
     {% block content %}{% endblock %}
+    {% include "sidebar.html" %}
     {% block sidebar %}{% endblock %}
+    {% include "footer.html" %}
     {% block footer %}{% endblock %}
 </body>
 </html>

@@ -1,15 +1,66 @@
 {% load static %}
-{% include "base_generic.html" %}
-{% include "header.html" %}
 {% block title %}<title>Главная</title>{% endblock %}
+{% include "base_generic.html" %}
 {% block content %}
-                 <main class="main-wrapper">
-                     <div class="last-active">
-                         <ul>
-                             <li><h2 class="title-last_active">Последняя активность</h2></li>
-                             <li class="item-last_active"><a class="client-last_active" href="#!">Client name</a><img title="ssh-connect" class="active-pic" src="{% static 'clt/img/png/ssh-button.png' %}" /></li>
-                             <li class="item-last_active"><a class="client-last_active" href="#!">Client name</a><img title="ssh-connect" class="active-pic" src="{% static 'clt/img/png/ssh-button.png' %}" /></li>
-                         </ul>
-                     </div>
-                 </main>
+<main class="main-wrapper">
+    <div class="last-active">
+        <ul>
+            <li><h2 class="title-last_active">Последняя активность</h2></li>
+            <li class="item-last_active">
+                <a class="client-last_active" href="#!">Client name</a>
+                <input type="image" title="ssh-connect" class="active-pic btn-ssh" src="{% static 'clt/img/png/ssh-button.png' %}" />
+            </li>
+            <li class="item-last_active">
+                <a class="client-last_active" href="#!">Client name</a>
+                <input type="image" title="ssh-connect" class="active-pic btn-ssh" src="{% static 'clt/img/png/ssh-button.png' %}" />
+            </li>
+        </ul>
+    </div>
+
+    <div class="reminder__wrapper">
+        <div class="reminder-title__wrapper">
+            <div class="reminder-title"><h2>НАПОМИНАНИЯ</h2></div>
+            <div class="reminder-title__thumb"><input class="btn-add" src="{% static 'clt/img/png/add-png.png' %}" title="Добавить напоминание" type="image" name="add_reminder" value="1" /></div>
+        </div>
+        <ul class="reminders">
+            <li>
+                <div class="reminder">
+                    <div class="reminder-pick"><img src="{% static 'clt/img/svg/notifier.svg' %}" /></div>
+                    <div class="reminder-text">
+                        <p>
+                            С другой стороны выбранный нами инновационный путь требует от нас системного анализа ключевых компонентов планируемого обновления.
+
+                            Равным образом новая модель...
+                            С другой стороны выбранный нами инновационный путь требует от нас системного анализа ключевых компонентов планируемого обновления.
+
+                            Равным образом новая модель...
+                        </p>
+                    </div>
+                    <div class="reminder-info">
+                        <p>
+                            Doroshenko D. 12.04.2020
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="reminder">
+                    <div class="reminder-pick read"><img src="{% static 'clt/img/svg/notifier.svg' %}" /></div>
+                    <div class="reminder-text">
+                        <p>
+                            С другой стороны выбранный нами инновационный путь требует от нас системного анализа ключевых компонентов планируемого обновления.
+
+                            Равным образом новая модель...
+                        </p>
+                    </div>
+                    <div class="reminder-info">
+                        <p>
+                            Doroshenko D. 12.04.2020
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</main>
 {% endblock %}

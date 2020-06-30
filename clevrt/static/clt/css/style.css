@@ -398,6 +398,19 @@ textarea {
 
 /* font Lato add end */
 
+/* roboto-regular - latin_cyrillic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/roboto-v20-latin_cyrillic-regular.eot'); /* IE9 Compat Modes */
+    src: local('Roboto'), local('Roboto-Regular'), url('../fonts/roboto-v20-latin_cyrillic-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/roboto-v20-latin_cyrillic-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/roboto-v20-latin_cyrillic-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/roboto-v20-latin_cyrillic-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/roboto-v20-latin_cyrillic-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
 /* project styles start */
 
 html {
@@ -409,13 +422,61 @@ html {
 }
 
 body {
-    font-family: Lato;
+    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
     background-color: #F5F5F5;
+}
+
+aside {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
 }
 
 /* header styles start */
@@ -434,7 +495,6 @@ body {
     width: inherit;
     max-height: 60px;
     background-color: #35A0CC;
-    margin-bottom: 14px;
 }
 
 .search__wrapper {
@@ -460,8 +520,8 @@ body {
     .header-search:focus{
         border: 2px solid #55c5f3;
         background: white;
-        max-width: 250px;
-        width: 250px;
+        max-width: 190px;
+        width: 190px;
     }
 
 .main-logo {
@@ -496,10 +556,9 @@ body {
     display: block;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: Lato;
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 29px;
     color: #FFFFFF;
     padding-top: 12px;
@@ -549,15 +608,22 @@ body {
     .sidebar-btn:hover {
         cursor: pointer;
         transform: scale(0.9);
+        transition: 0.2s all;
     }
+
+.sidebar-active {
+    transform: rotate(90deg);
+    transition: 0.2s all;
+}
 
 /* header styles end */
 
-/* main styles start */
+/* main-page styles start */
 
 .main-wrapper {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 14px;
     width: 78%;
     max-width: 1497px;
     margin-left: 30px;
@@ -588,16 +654,9 @@ body {
     height: 40px;
     background: #35A0CC;
     border-radius: 21px;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 24px;
-    text-align: center;
-    vertical-align: middle;
-    color: #FFFFFF;
-    padding-top: 5px;
+    padding-top: 7px;
     margin-bottom: 20px;
+    vertical-align: middle;
 }
 
 .client-last_active {
@@ -607,9 +666,8 @@ body {
     width: 153px;
     height: 100%;
     text-decoration: none;
-    font-family: Lato;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     line-height: 19px;
     padding-left: 11px;
@@ -637,4 +695,240 @@ body {
     transition: 0.15s all;
 }
 
-/* main styles end */
+.reminder__wrapper{
+    margin: auto;
+    margin-top: 0;
+    width: 50%;
+}
+
+.reminder-title__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 7px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 40px;
+    background: #35A0CC;
+    border-radius: 43px;
+}
+
+.reminder-title__thumb input {
+    position: absolute;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    margin-left: auto;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+    .reminder-title__thumb input:hover{
+        transform: scale(0.9);
+    }
+
+    .reminder-title{
+        margin: auto;
+        padding-bottom: 8px;
+    }
+
+.reminder {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+    .reminder:hover {
+        transition: 0.15s all;
+        transform: scale(1.07);
+    }
+
+    .reminder .reminder-pick {
+        display: table-cell;
+        vertical-align: middle;
+        width: 10px;
+        height: 10px;
+        padding-left: 18px;
+    }
+
+    .reminder .reminder-text {
+        display: table-cell;
+        vertical-align: middle;
+        float: right;
+        padding: 18px 16px 30px 23px;
+    }
+
+    .read img{
+        visibility: hidden;
+    }
+
+
+.reminder-info {
+    position: absolute;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    background: #C4C4C4;
+    left: 0;
+    bottom: 0;
+    margin-top: 20px;
+    padding-left: 23px;
+}
+
+    .reminder-info p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+    }
+
+/* main-page styles end */
+
+/* sidebar style start */
+
+.sidebar__wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0px;
+    max-height: 900px;
+    overflow-y: scroll;
+    z-index: 3;
+    background-color: #E8E8E8;
+    transition: 0.3s all;
+}
+
+.sd-active{
+    transition: 0.3s all;
+    width: 20%;
+}
+
+.last-logs__title {
+    width: 70%;
+    min-height: 30px;
+    background-color: #35A0CC;
+    border-radius: 41px;
+    margin: 30px auto 20px;
+    padding-top: 4px;
+}
+
+.cards{
+    width: 76%;
+    margin: 20px auto 20px;
+}
+
+.card{
+    width: 100%;
+    background-color: #FFF;
+    margin-bottom: 20px;
+}
+
+.last-log__title-wrapper {
+    margin: 5px 17px 2px;
+    border-bottom: 1px solid #35A0CC;
+    padding-top: 12px;
+    padding-bottom: 2px;
+}
+
+.last-log__title {
+    color: #000;
+}
+
+.last-log__content{
+    width: 100%;
+    padding: 6px 17px 9px;
+    text-align: right;
+}
+
+    .last-log__content p {
+        white-space: nowrap;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .last-log__content a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 600;
+    }
+
+.last-log__detail {
+    width: 100%;
+    text-align: center;
+    padding: 2px 10px;
+    background-color: #35A0CC;
+}
+
+    .last-log__detail a {
+        text-decoration: none;
+        color: #FFF;
+        font-weight: 500;
+    }
+
+.last-tasks__title {
+    width: 70%;
+    min-height: 30px;
+    background-color: #35A0CC;
+    border-radius: 41px;
+    margin: 0 auto 20px;
+    padding-top: 4px;
+}
+
+.last-task__title-wrapper {
+    margin: 5px 17px 2px;
+    border-bottom: 1px solid #35A0CC;
+    padding-top: 12px;
+    padding-bottom: 2px;
+}
+
+.last-task__title-hostname {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000;
+}
+
+.last-task__title-category {
+    text-decoration: none;
+    font-weight: 400;
+    float: right;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000;
+}
+
+.last-task__content {
+    width: 100%;
+    padding: 6px 17px 9px;
+    min-height: 54px;
+    text-align: center;
+    padding-top: 18px;
+}
+
+    .last-task__content a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 600;
+    }
+
+/* sidebar style end */
+
+/* footer style start */
+
+
+
+/* footer style end */

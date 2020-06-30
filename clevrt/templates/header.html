@@ -5,7 +5,7 @@
         <div class="search__wrapper">
             <form action="" method="post">
                 {% csrf_token %}
-                <input name="search" type="text" value="" class="header-search" />                
+                <input name="search" type="text" value="" class="header-search" />
             </form>
         </div>
         <div class="main-logo">
@@ -26,7 +26,7 @@
         <div class="setting-btn">
             <img src="{% static 'clt/img/png/settings.png' %}" alt="Настройки" class="setting__thumb" />
         </div>
-        <div class="sidebar-btn">
+        <div class="sidebar-btn sidebar-active">
             <img src="{% static 'clt/img/svg/sidebar-btn.svg' %}" alt="Настройки" class="sidebar__thumb" />
         </div>
     </div>

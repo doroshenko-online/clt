@@ -2,16 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\clevrt",
-    "\\clevrt\\clt",
-    "\\clevrt\\clt\\static",
     "\\clevrt\\clt\\static\\clt",
-    "\\clevrt\\clt\\static\\clt\\test2",
+    "\\clevrt\\clt\\static\\clt\\img",
+    "\\clevrt\\clt\\static\\clt\\img\\svg",
     "\\clevrt\\static",
     "\\clevrt\\static\\clt",
-    "\\clevrt\\static\\clt\\test2",
-    "\\clevrt\\static\\clt\\test2\\img",
-    "\\clevrt\\static\\clt\\test2\\img\\svg"
+    "\\clevrt\\static\\clt\\css",
+    "\\clevrt\\static\\clt\\img\\png",
+    "\\clevrt\\static\\clt\\test1\\css"
   ],
-  "SelectedNode": "\\clevrt",
+  "SelectedNode": "\\clevrt\\static\\clt\\test1",
   "PreviewInSolutionExplorer": false
 }
