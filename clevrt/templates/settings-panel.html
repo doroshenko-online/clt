@@ -1,5 +1,21 @@
 {% block settings %}
 
-
+<div id="settings-panel" class="settings-panel">    <!-- add setting-active to class for activate settings panel -->
+    <div class="kitty-path">
+        <form action="" method="post">
+            <div class="kitty-path__label">
+                <label for="kitty-path_input">Путь к kitty:</label>
+            </div>
+            <input type="text" value="" placeholder="C:\Program Files\kitty\kitty.exe" id="kitty-path_input">
+            <input class="kitty-path__btn" type="button" value="Сохранить">
+        </form>
+    </div>
+    <div class="change-pass">
+        <a href="accounts/password_change/" class="change-pass__btn" value="2">Сменить пароль</a>
+    </div>
+        <div class="go-out">
+        <a href="accounts/logout/" class="go-out__btn" value="3">Выйти</a>
+    </div>
+</div>
 
 {% endblock %}

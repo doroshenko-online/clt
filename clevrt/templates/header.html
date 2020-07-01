@@ -4,7 +4,7 @@
 <header class="header">
     <div class="header__wrapper">
         <div class="search__wrapper">
-            <form action="" method="post">
+            <form action="" method="get">
                 {% csrf_token %}
                 <input name="search" type="text" value="" class="header-search" />
             </form>
@@ -24,7 +24,7 @@
                 <li><div class="button"><a class="btn-link" href="#!">Наша Wiki</a></div></li>
             </ul>
         </nav>
-        <div class="setting-btn">
+        <div id="setting-btn" >
             <img src="{% static 'clt/img/png/settings.png' %}" alt="Настройки" class="setting__thumb" />
         </div>
     </div>
