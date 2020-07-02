@@ -431,7 +431,7 @@ body {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-    background-color: #F5F5F5;
+    background-color: #fff;
 }
 
 
@@ -475,7 +475,7 @@ textarea{
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    color; #000;
+    color: #000;
     padding: 3px;
 }
 
@@ -498,6 +498,7 @@ textarea{
 }
 
 .search__wrapper {
+    width: 21.5%;
     height: 60px;
     margin-left: 30px;
     padding-top: 7px;
@@ -515,10 +516,12 @@ textarea{
     background: white url("../img/svg/search-ico.svg") no-repeat left;
     background-position-x: 13px;
     z-index: 2;
+    transition: 0.15s all;
 }
 
     .header-search:focus{
         border: 2px solid #55c5f3;
+        transition: 0.15s all;
         background: white;
         max-width: 190px;
         width: 190px;
@@ -527,7 +530,6 @@ textarea{
 .main-logo {
     max-width: 60px;
     max-height: 60px;
-    margin-left: 25px;
 }
 
 .logo-link {
@@ -539,6 +541,10 @@ textarea{
         transition: 0.15s all;
     }
 
+.header-menu{
+    margin-right: auto;
+}
+
 .buttons {
     display: flex;
     flex-wrap: wrap;
@@ -547,7 +553,7 @@ textarea{
 }
 
 .button {
-    width: 150px;
+    width: 135px;
     height: 60px;
     vertical-align: middle;
 }
@@ -561,7 +567,7 @@ textarea{
     font-size: 20px;
     line-height: 29px;
     color: #FFFFFF;
-    padding-top: 12px;
+    padding-top: 15px;
     width: 100%;
     height: 100%;
 }
@@ -607,8 +613,8 @@ textarea{
     width: 100%;
     height: 100%;
     margin-left: 30px;
+    margin-right: 30px;
     min-height: 650px;
-    float: left;
 }
 
 .last-active {
@@ -620,13 +626,11 @@ textarea{
 }
 
 .item-last_active {
-    display: flex;
-    flex-wrap: wrap;
+    text-align: center;
+    vertical-align: middle;
     width: 100%;
     height: 60px;
-    background: white;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
+    border-bottom: 0.5px solid #C6C4C4;
 }
 
 .title-last_active {
@@ -635,25 +639,24 @@ textarea{
     background: #35A0CC;
     border-radius: 21px;
     padding-top: 8px;
-    margin-bottom: 20px;
     vertical-align: middle;
 }
 
 .client-last_active {
     display: block;
     box-sizing: border-box;
-    position: relative;
-    width: 153px;
-    height: 100%;
     text-decoration: none;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 25px;
-    padding-left: 11px;
+    font-size: 20px;
+    line-height: 20px;
     padding-top: 17px;
-    color: #000000;
+    color: #35A0CC;
 }
+
+    .client-last_active:hover{
+        color: #1b7296;
+    }
 
 .active-pic {
     position: relative;
@@ -670,15 +673,10 @@ textarea{
         transform: scale(0.9);
     }
 
-.client-last_active:hover {
-    font-size: 17px;
-    transition: 0.15s all;
-}
-
 .reminder__wrapper{
-    margin: 0 0 auto 118px;
+    margin: 0 0 auto 10%;
     margin-top: 14px;
-    width: 50%;
+    width: 45%;
 }
 
 .reminder-title__wrapper {
@@ -718,7 +716,7 @@ textarea{
     position: relative;
     width: 100%;
     height: 100px;
-    background: #FFFFFF;
+    background: #f1f1f1;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
     transition: 0.15s all;
@@ -819,11 +817,17 @@ textarea{
     width: 450px;
     height: 300px;
     max-height: 300px;
-    border: 1px solid #35A0CC;
+    border: 0.5px solid #35A0CC;
     border-radius: 21px;
     margin: 10px auto 20px;
     resize: none;
+    transition: 0.15s all;
 }
+
+    .reminder-add textarea:focus{
+        border: 1.5px solid #35A0CC;
+        transition: 0.15s all;
+    }
 
 #new-reminder__create{
     display: block;
@@ -858,11 +862,12 @@ textarea{
 .sidebar__wrapper {
     position: fixed;
     right: 0;
-    max-height: 87%;
+    max-height: 95%;
     width: 20%;
     overflow-y: scroll;
     z-index: 3;
     transition: 0.3s all;
+    background-color: #ccc;
 }
 
 .last-logs__title {
@@ -1130,3 +1135,4 @@ textarea{
     }
 
 /* settings panel styles end */
+

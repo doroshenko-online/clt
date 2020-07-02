@@ -4,11 +4,11 @@
 {% block content %}
     <div id="new-reminder__wrapper" class="new-reminder__wrapper">
         <div class="reminder-add">
-            <input id="close-reminder-add" type="image" src="{% static 'clt/img/svg/close.svg' %}">
+            <input tabindex="3" id="close-reminder-add" type="image" src="{% static 'clt/img/svg/close.svg' %}">
             <form action="" method="post">
                 {% csrf_token %}
-                <textarea name="new-reminder__content"></textarea>
-                <button id="new-reminder__create" type="submit">Добавить</button>
+                <textarea maxlength="500" tabindex="1" name="new-reminder__content" autofocus></textarea>
+                <button  tabindex="2" id="new-reminder__create" type="submit">Добавить</button>
             </form>
         </div>
     </div>
@@ -18,11 +18,9 @@
                 <li><h2 class="title-last_active">Последняя активность</h2></li>
                 <li class="item-last_active">
                     <a class="client-last_active" href="#!">Client name</a>
-                    <input type="image" title="ssh-connect" class="active-pic btn-ssh" src="{% static 'clt/img/png/ssh-button.png' %}" />
                 </li>
                 <li class="item-last_active">
                     <a class="client-last_active" href="#!">Client name</a>
-                    <input type="image" title="ssh-connect" class="active-pic btn-ssh" src="{% static 'clt/img/png/ssh-button.png' %}" />
                 </li>
             </ul>
         </div>
