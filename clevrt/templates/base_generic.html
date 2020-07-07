@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="{% static 'clt/css/style.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'clt/img/png/logo-fav.png' %}" />
 </head>
-{% include "header.html" %}
-{% block header %}{% endblock %}
 <body>
-    {% block content %}{% endblock %}
-    {% include 'settings-panel.html' %}
-    {% block settings %}{% endblock %}
+    {% include "header.html" %}
+    {% block header %}{% endblock %}
+        {% include 'settings-panel.html' %}
+        {% block settings %}{% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% include "footer.html" %}
+    {% block footer %}{% endblock %} 
 </body>
-{% include "footer.html" %}
-{% block footer %}{% endblock %}
 </html>
 <script src="{% static 'clt/js/clt_main.js' %}"></script>

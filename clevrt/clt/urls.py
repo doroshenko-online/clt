@@ -28,5 +28,6 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('tasks/', include('tasks.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('test/', views.Test.as_view(), name='test')
+    path('test/', views.Test.as_view(), name='test'),
+    path('clients/', views.Clients.as_view(), name='clients'),
 ] + static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static"))

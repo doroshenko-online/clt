@@ -18,3 +18,8 @@ class Test(LoginRequiredMixin, View):
     def get(self, request):
         name = Client.objects.all()
         return HttpResponse(name)
+
+class Clients(View):
+    template_name = 'clients.html'
+    def get(self, request):
+        return render(request, template_name=self.template_name)

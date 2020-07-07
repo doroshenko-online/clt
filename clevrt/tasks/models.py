@@ -16,12 +16,10 @@ class Task_Category(models.Model):
 class Task(models.Model):
     OPEN = 'open'
     CLOSED = 'closed'
-    IN_WORK = 'in_work'
 
     STATUS = [
         (OPEN, 'Открыто'),
         (CLOSED, 'Закрыто'),
-        (IN_WORK, 'В работе'),
     ]
 
     name = models.CharField(max_length=100, verbose_name='название задачи')
@@ -34,6 +32,7 @@ class Task(models.Model):
     description = models.TextField(max_length=5000, blank=True, verbose_name='описание задачи')
     image = models.ImageField(blank=True, null=True, verbose_name='изображение')
     pud_date = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
+    date_close = models.DateTimeField(blank=True, null=True, verbose_name="дата закрытия")
 
     class Meta:
         verbose_name = 'Задача'
