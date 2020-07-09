@@ -14,6 +14,7 @@ class Country(models.Model):
         return self.country
 
 class City(models.Model):
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name='страна')
     city = models.CharField(max_length=100, verbose_name='город')
 
     class Meta:

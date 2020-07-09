@@ -461,8 +461,6 @@ p {
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    display: flex;
-    align-items: center;
     text-align: center;
     color: #000000;
 }
@@ -632,7 +630,7 @@ textarea{
 
 .title-last_active {
     width: 100%;
-    min-height: 40px;
+    height: 40px;
     background: #35A0CC;
     padding-top: 8px;
     vertical-align: middle;
@@ -678,12 +676,11 @@ textarea{
 .reminder-title__wrapper {
     display: flex;
     flex-wrap: wrap;
-    box-sizing: border-box;
     position: relative;
     padding-top: 7px;
     margin-bottom: 20px;
     width: 100%;
-    min-height: 40px;
+    height: 40px;
     background: #35A0CC;
 }
 
@@ -818,6 +815,20 @@ textarea{
     resize: none;
     transition: 0.15s all;
 }
+
+.reminder-add input{
+    display: block;
+    padding: 5px;
+    max-height: 300px;
+    border-radius: 21px;
+    margin: 10px auto 20px;
+    resize: none;
+    transition: 0.15s all;
+}
+
+    .reminder-add input:focus{
+        transition: 0.15s all;
+    }
 
     .reminder-add textarea:focus{
         border: 1.5px solid #35A0CC;
@@ -998,6 +1009,7 @@ textarea{
     align-items: center;
     text-align: center;
     color: #FDFDFD;
+    padding-top: 3px;
 }
 
 .footer-logo{
@@ -1084,10 +1096,134 @@ textarea{
 
 .main-wrapper__flex {
     display: flex;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
     margin-left: 30px;
     margin-right: 30px;
-    min-height: 650px;
+    min-height: 1080px;
+    margin-top: 14px;
 }
+
+.clients-block{
+    width: 36%;
+}
+
+.active-clients{
+    align-self: flex-start;
+    margin-bottom: 30px;
+}
+
+.potencial-clients{
+    align-self: flex-start;
+}
+
+.disabled-clients{
+    align-self: flex-start;
+}
+
+.clients-buttons{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.clients-block__title{
+    height: 40px;
+    background-color: #35A0CC;
+    padding-top: 8px;
+}
+
+.client-row{
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    text-align: center;
+    border-bottom: 0.5px solid #EBEBEB;
+    padding: 0 20px 0 20px;
+}
+
+.client-row__name{
+    align-self: center;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    align-items: center;
+
+    color: #020202;
+}
+
+.client-row__name span{
+    font-weight: 500;
+}
+
+.client-row__edit{
+    display: block;
+    text-decoration: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: #35A0CC;
+    align-self: center;
+}
+
+    .client-row__edit:hover{
+        cursor: pointer;
+    }
+
+.client-row__edit img{
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+
+.coutry-title{
+    height: 30px;
+    background-color: #35A0CC;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    padding-top: 5px;
+    color: #FFFFFF;
+}
+
+.city-title{
+    height: 22px;
+    background-color: #EBEBEB;
+    padding-top: 2px;
+}
+
+.clients-button{
+    width: 150px;
+    height: 50px;
+    display: block;
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 21px;
+    border-radius: 4px;
+    border: 0;
+    background-color: #DE7A1D;
+    padding: 5px;
+    transition: 0.15s all;
+}
+
+.add-client{
+    text-decoration: none;
+    background-color: #35A0CC;
+}
+
+    .clients-button:hover, .clients-button:focus, .clients-button:active{
+        transform: scale(0.9);
+        transition: 0.15s all;
+    }
 
 /* clients styles end */
