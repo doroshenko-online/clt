@@ -60,6 +60,17 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+class Gateway_Info(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
+    gateway_info = models.CharField(max_length=250, default='', blank=True, verbose_name='информация о роутере')
+
+    class Meta:
+        verbose_name = 'Информация о роутере'
+        verbose_name_plural = 'Информация о роутерах'
+
+    def __str__(self):
+        return self.client.name
+
 class Ip_List(models.Model):
     ip = models.CharField(max_length=16, verbose_name='ip')
     port = models.CharField(max_length=6, default='22', verbose_name='port')
