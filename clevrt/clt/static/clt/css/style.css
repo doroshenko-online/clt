@@ -71,8 +71,8 @@ h2 {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 32px;
     text-align: center;
     vertical-align: middle;
     color: #FFFFFF;
@@ -83,8 +83,8 @@ h3 {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 16px;
+    line-height: 21px;
     text-align: center;
     vertical-align: middle;
 }
@@ -93,20 +93,79 @@ p {
     font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 17px;
     text-align: center;
     color: #000000;
 }
 
+a{
+    text-decoration: none;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000;
+}
+
+button{
+    transition: 0.25s;
+}
+
+    button:hover, button:active, button:active{
+        transform: scale(0.95);
+    }
+
 textarea{
     font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 17px;
     color: #000;
     padding: 3px;
+}
+
+section{
+    margin-bottom: 30px;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.button-st{
+    width: 150px;
+    min-height: 50px;
+    display: flex;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.button-orange{
+    background-color: #DE7A1D;
+}
+
+.button-blue{
+    background-color: #35A0CC;
+}
+
+.button-red{
+    background-color: #E91212;
+}
+
+.button-green{
+    background-color: #0CAD30;
+}
+
+.button-link{
+    color: #fff;
 }
 
 /* header styles start */
@@ -120,6 +179,7 @@ textarea{
 
 .header__wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     width: inherit;
@@ -172,7 +232,6 @@ textarea{
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    min-width: 1020px;
     text-align: center;
     align-items: flex-start;
     justify-content: stretch;
@@ -183,6 +242,7 @@ textarea{
     min-width: 130px;
     height: 60px;
     vertical-align: middle;
+    align-items: center;
 }
 
 .btn-link {
@@ -231,398 +291,6 @@ textarea{
 
 /* header styles end */
 
-/* main-page styles start */
-
-.main-wrapper {
-    margin-left: 30px;
-    margin-right: 30px;
-    min-height: 650px;
-}
-
-    .clearfix::after{
-        content: "";
-        display: block;
-        clear: both;
-        height: 0;
-    }
-
-.last-active {
-    float: left;
-    position: relative;
-    margin-top: 14px;
-    width: 19%;
-    top: 0;
-    left: 0;
-}
-
-.item-last_active {
-    vertical-align: middle;
-    padding-left: 10px;
-    width: 100%;
-    min-height: 60px;
-    border-bottom: 0.5px solid #C6C4C4;
-}
-
-.title-last_active {
-    width: 100%;
-    height: 40px;
-    background: #35A0CC;
-    padding-top: 8px;
-    vertical-align: middle;
-}
-
-.client-last_active {
-    display: block;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
-    padding-top: 17px;
-    color: #35A0CC;
-}
-
-    .client-last_active:hover{
-        color: #1b7296;
-    }
-
-.active-pic {
-    position: relative;
-    top: 0;
-    margin-left: auto;
-    right: 19px;
-    width: 30px;
-    height: 30px;
-    margin-top: 15px;
-}
-
-    .active-pic:hover {
-        cursor: pointer;
-        transform: scale(0.9);
-    }
-
-.reminder__wrapper{
-    float: left;
-    margin: 14px 0 0 8%;
-    width: 45%;
-}
-
-.reminder-title__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    padding-top: 7px;
-    margin-bottom: 20px;
-    width: 100%;
-    height: 40px;
-    background: #35A0CC;
-}
-
-.reminder-title__thumb input {
-    position: absolute;
-    right: 0;
-    width: 24px;
-    height: 24px;
-    margin-left: auto;
-    margin-right: 20px;
-    vertical-align: middle;
-}
-
-    .reminder-title__thumb input:hover{
-        transform: scale(0.9);
-    }
-
-    .reminder-title{
-        margin: auto;
-        padding-bottom: 8px;
-    }
-
-.reminder {
-    display: table;
-    position: relative;
-    width: 100%;
-    height: 100px;
-    background: #f1f1f1;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
-    margin-bottom: 20px;
-    transition: 0.15s all;
-}
-    .reminder:hover {
-        transition: 0.15s all;
-        transform: scale(1.07);
-    }
-
-    .reminder .reminder-pick {
-        display: table-cell;
-        vertical-align: middle;
-        width: 10px;
-        height: 10px;
-        padding-left: 18px;
-    }
-
-    .reminder .reminder-text {
-        display: table-cell;
-        vertical-align: middle;
-        float: right;
-        padding: 18px 16px 30px 23px;
-    }
-
-    .read img{
-        visibility: hidden;
-    }
-
-
-.reminder-info {
-    position: absolute;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 20px;
-    background: #C4C4C4;
-    left: 0;
-    bottom: 0;
-    margin-top: 20px;
-    padding-left: 23px;
-}
-
-    .reminder-info p {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 14px;
-        display: flex;
-        align-items: center;
-        color: #FFFFFF;
-    }
-
-.new-reminder__wrapper{
-    position: fixed;
-    display: none;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(196, 196, 196, 0.75);
-    backdrop-filter: blur(3px);
-    z-index: 998;
-}
-
-.reminder-add{
-    width: 720px;
-    height: 500px;
-    margin: 100px auto;
-    background: #FFF;
-    border: 0;
-    border-radius: 21px;
-}
-    .new-reminder__active{
-        display: block;
-    }
-
-#close-reminder-add{
-    display: block;
-    width: 40px;
-    height: 40px;
-    padding-top: 10px;
-    margin: 0 10px 20px auto;
-    transition: 0.15s all;
-}
-
-    #close-reminder-add:hover{
-        transform: scale(0.9);
-        transition: 0.15s all;
-    }
-
-.reminder-add textarea{
-    display: block;
-    padding: 10px;
-    width: 450px;
-    height: 300px;
-    max-height: 300px;
-    border: 0.5px solid #35A0CC;
-    border-radius: 21px;
-    margin: 10px auto 20px;
-    resize: none;
-    transition: 0.15s all;
-}
-
-.reminder-add input{
-    display: block;
-    padding: 5px;
-    max-height: 300px;
-    border-radius: 21px;
-    margin: 10px auto 20px;
-    resize: none;
-    transition: 0.15s all;
-}
-
-    .reminder-add input:focus{
-        transition: 0.15s all;
-    }
-
-    .reminder-add textarea:focus{
-        border: 1.5px solid #35A0CC;
-        transition: 0.15s all;
-    }
-
-#new-reminder__create{
-    display: block;
-    background: #27B724;
-    border-radius: 41px;
-    margin: 10px auto 20px;
-    text-align: center;
-    width: 250px;
-    height: 40px;
-    border: 0;
-    transition: 0.15s all;
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 19px;
-    padding: 5px 10px;
-    color: #FFFFFF;
-}
-
-    #new-reminder__create:hover{
-        transform: scale(0.9);
-        transition: 0.15s all;
-    }
-
-/* main-page styles end */
-
-/* sidebar style start */
-
-
-
-.sidebar__wrapper {
-    float: right;
-    max-height: 95%;
-    width: 20%;
-    z-index: 3;
-    transition: 0.3s all;
-}
-
-.last-logs__title {
-    width: 76%;
-    min-height: 30px;
-    background-color: #35A0CC;
-    margin: 30px auto 20px;
-    padding-top: 4px;
-}
-
-.cards{
-    width: 76%;
-    margin: 20px auto 20px;
-}
-
-.card{
-    width: 100%;
-    background-color: #F1F1F1;
-    margin-bottom: 20px;
-    transition: 0.2s all;
-}
-    .card:hover{
-        transition: 0.2s all;
-        transform: scale(1.1);
-    }
-
-.last-log__title-wrapper {
-    margin: 5px 17px 2px;
-    border-bottom: 1px solid #35A0CC;
-    padding-top: 12px;
-    padding-bottom: 2px;
-}
-
-.last-log__title {
-    color: #000;
-}
-
-.last-log__content{
-    width: 100%;
-    padding: 6px 17px 9px;
-    text-align: right;
-}
-
-    .last-log__content p {
-        white-space: nowrap;
-        line-height: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .last-log__content a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 600;
-    }
-
-.last-log__detail {
-    width: 100%;
-    text-align: center;
-    padding: 2px 10px;
-    background-color: #35A0CC;
-}
-
-    .last-log__detail a {
-        text-decoration: none;
-        color: #FFF;
-        font-weight: 500;
-    }
-
-.last-tasks__title {
-    width: 76%;
-    min-height: 30px;
-    background-color: #35A0CC;
-    margin: 0 auto 20px;
-    padding-top: 4px;
-}
-
-.last-task__title-wrapper {
-    margin: 5px 17px 2px;
-    border-bottom: 1px solid #35A0CC;
-    padding-top: 12px;
-    padding-bottom: 2px;
-}
-
-.last-task__title-hostname {
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    color: #000;
-}
-
-.last-task__title-category {
-    text-decoration: none;
-    font-weight: 400;
-    float: right;
-    font-size: 12px;
-    line-height: 14px;
-    color: #000;
-}
-
-.last-task__content {
-    width: 100%;
-    padding: 6px 17px 9px;
-    min-height: 54px;
-    text-align: center;
-    padding-top: 18px;
-}
-
-    .last-task__content a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 600;
-    }
-
-/* sidebar style end */
-
 /* footer style start */
 
 .footer__wrapper{
@@ -664,19 +332,21 @@ textarea{
     right: 0;
     z-index: 999;
     width: 284px;
-    background: #35A0CC;
+    height: 300px;
     transition: 0.20s all;
     display: none;
+    background: rgba(53, 160, 204, 0.4);
     padding-top: 30px;
     font-family: "Roboto";
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
+    backdrop-filter: blur(4px);
 }
 
     .setting-active{
         display: block;
-        transition: 0.20s all;
+        transition: 0.40s all;
     }
 
 .change-pass__btn{
@@ -693,13 +363,12 @@ textarea{
     border-radius: 41px;
     color: #FFFFFF;
     border: 0;
-    transition: 0.15s all;
+    transition: 0.4s all;
     margin: 0 auto 13px auto;
 }
 
     .change-pass__btn:hover{
-        transform: scale(0.9);
-        transition: 0.15s all;
+        transform: scale(0.95);
     }
 
 .go-out__btn{
@@ -716,150 +385,202 @@ textarea{
     border-radius: 41px;
     color: #FFFFFF;
     border: 0;
-    transition: 0.15s all;
+    transition: 0.4s all;
     margin: 0 auto 13px auto;
 }
 
     .go-out__btn:hover{
-        transform: scale(0.9);
-        transition: 0.15s all;
+        transform: scale(0.95);
     }
 
 /* settings panel styles end */
 
-/* clients styles start */
+/*main styles start*/
 
-.main-wrapper__flex {
-    display: flex;
-    margin-left: 30px;
-    margin-right: 30px;
-    min-height: 1080px;
-    margin-top: 14px;
+.main-wrapper{
+    width: 100%;
+    padding: 30px;
+    background-color: #F0F0F0;
 }
 
-.main-block__clients{
+/*main styles end*/
+
+.container__main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.last-activity{
+    max-width: 325px;
+}
+
+.reminders{
+    max-width: 750px;
+}
+
+.addition-info{
+    max-width: 300px;
+}
+
+.title-block{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #35A0CC;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+}
+
+.add-reminder{
+    width: 28px;
+    height: 28px;
+    background: url('../img/png/add-png.png') left no-repeat;
+    background-size: 28px 28px;
+    border: 0;
+    transition: 0.15s;
+}
+
+.title{
+    margin: auto;
+}
+
+.addition-info__title-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #35A0CC;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+}
+
+.addition-info__title{
+    color: #fff;
+}
+
+.last-activity__item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 0.5px solid #C6C4C4;
+    padding: 15px;
+}
+
+.last-activity__ssh{
+    width: 30px;
+    height: 30px;
+    background: url('../img/png/ssh-button.png') left no-repeat;
+    background-size: 30px 30px;
+    border: 0;
+    transition: 0.15s;
+}
+
+.reminder-block{
+    width: 100%;
+    padding: 15px 25px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    transition: 1s;
+}
+
+    .reminder-block:hover{
+        transform: scale(1.05);
+    }
+
+.new-reminder{
+    min-width: 25px;
+    width: 25px;
+    height: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 4px;
+    margin-right: 10px;
+}
+
+.new-reminder__img{
+    width: 10px;
+    height: 10px;
+}
+
+.addition-info__card{
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.addition-info__name{
+    font-size: 14px;
+    line-height: 17px;
+    padding: 3px 10px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 10px;
+    border-bottom: 1px solid #35A0CC;
+}
+
+.addition-info__info{
+    padding: 10px 0;
+    margin: 0 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.addition-info__info-row{
+    max-width: 200px;
+    box-sizing: border-box;
+    text-align: left;
+    max-height: 17px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.addition-info__hostname{
+    font-size: 13px;
+    line-height: 17px;
+    font-weight: bold;
+}
+
+.addition-info__detail{
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px 10px;
+    background-color: #35A0CC;
+}
+
+.addition-info__detail-text{
+    font-size: 14px;
+    line-height: 17px;
+    color: #fff;
+}
+
+.addition-info__card-header{
+    padding: 3px 10px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #35A0CC;
+}
+
+/*client page styles start*/
+
+.container__clients{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    height: 500px;
-    align-content: space-between;
-    min-width: 100%;
+    justify-content: flex-start;
 }
 
-.clients-block{
-    width: 40%;
-}
 
-.active-clients{
-    align-self: flex-start;
-    margin-bottom: 30px;
-}
+/*client page styles end*/
 
-.potencial-clients{
-    align-self: flex-start;
-}
-
-.disabled-clients{
-    align-self: flex-start;
-    margin-top: 30px;
-}
-
-.clients-block__title{
-    height: 40px;
-    background-color: #35A0CC;
-    padding-top: 10px;
-}
-
-.client-row{
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-    text-align: center;
-    border-bottom: 0.5px solid #EBEBEB;
-    padding: 0 20px 0 20px;
-}
-
-.client-row__name{
-    align-self: center;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 16px;
-    align-items: center;
-
-    color: #020202;
-}
-
-.client-row__name span{
-    font-weight: 500;
-}
-
-.client-row__edit{
-    display: block;
-    text-decoration: none;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    color: #35A0CC;
-    align-self: center;
-}
-
-    .client-row__edit:hover{
-        cursor: pointer;
-    }
-
-.client-row__edit img{
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-}
-
-.coutry-title{
-    height: 30px;
-    background-color: #35A0CC;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    padding-top: 5px;
-    color: #FFFFFF;
-}
-
-.city-title{
-    height: 22px;
-    background-color: #EBEBEB;
-    padding-top: 2px;
-}
-
-.clients-button{
-    width: 140px;
-    height: 50px;
-    display: block;
-    font-family: 'Roboto';
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    color: #FFFFFF;
-    margin-bottom: 21px;
-    border-radius: 4px;
-    border: 0;
-    background-color: #DE7A1D;
-    padding: 5px;
-    transition: 0.15s all;
-}
-
-.add-client{
-    text-decoration: none;
-    background-color: #35A0CC;
-}
-
-    .clients-button:hover, .clients-button:focus, .clients-button:active{
-        transform: scale(0.9);
-        transition: 0.15s all;
-    }
-
-/* clients styles end */
