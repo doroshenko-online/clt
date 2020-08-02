@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../virtualenvs/dimad-container/lib/python3.8"
+		}
+	],
+	"settings": {}
+}

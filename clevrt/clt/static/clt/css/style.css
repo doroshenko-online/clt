@@ -66,8 +66,7 @@ body {
     background-color: #fff;
 }
 
-
-h2 {
+h1{
     font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
@@ -75,8 +74,21 @@ h2 {
     line-height: 32px;
     text-align: center;
     vertical-align: middle;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    vertical-align: middle;
     color: #FFFFFF;
     text-transform: uppercase;
+    display: block;
+    width: 100%;
 }
 
 h3 {
@@ -403,9 +415,15 @@ section{
     background-color: #F0F0F0;
 }
 
+.main-wrapper__white{
+    width: 100%;
+    padding: 30px;
+    background-color: #fff;
+}
+
 /*main styles end*/
 
-.container__main{
+.container{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -427,7 +445,7 @@ section{
 
 .title-block{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     background-color: #35A0CC;
     padding: 8px 16px;
@@ -443,9 +461,6 @@ section{
     transition: 0.15s;
 }
 
-.title{
-    margin: auto;
-}
 
 .addition-info__title-block{
     display: flex;
@@ -572,15 +587,198 @@ section{
     border-bottom: 1px solid #35A0CC;
 }
 
-/*client page styles start*/
+/*clients page styles start*/
 
-.container__clients{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: flex-start;
+.active-clients, .potential-disabled{
+    width: 35%;
 }
 
+.disabled-clients{
+    margin-top: 30px;
+}
+
+.city-title{
+    text-align: center;
+    padding: 5px 10px;
+    background-color: #EBEBEB;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.coutry-title{
+    margin: 0;
+}
+
+.client{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 20px;
+    border-bottom:  0.5px solid #EBEBEB;
+    align-items: center;
+}
+
+.client p{
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.client-link{
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.client-edit__link{
+    text-align: center;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #35A0CC;
+    padding-left: 20px;
+    background: url('../img/png/pencil.png') no-repeat left;
+    background-size: 10px 10px;
+    transition: 0.25s;
+}
+
+    .client-edit__link:hover{
+        transform: scale(0.9);
+    }
+
+/*clients page styles end*/
+
+/*client page style start*/
+
+.client-title__block{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 
 /*client page styles end*/
 
+.client-title{
+    display: block;
+    align-self: center;
+}
+
+#change-client{
+    margin-bottom: 0;
+}
+
+.info-row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 25px;
+    border-top: 1px solid #EEE;
+}
+
+.client-title__block{
+    padding-bottom: 20px;
+}
+
+.info-title{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #000000;
+    width: 180px;
+    text-align: left;
+    padding: 10px 0;
+}
+
+.info-row__text{
+    display: block;
+    padding: 10px 0;
+}
+
+.ip-port__info{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #000000;
+    padding-right: 10px;
+    margin-right: 25px;
+    border-right: 1px solid #35A0CC;
+}
+
+.section-add-info{
+    margin-left: auto;
+    padding-left: 15px;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #35A0CC;
+    background: url("../img/png/more.png") no-repeat left;
+    background-size: 10px 10px;
+    transition: 0.25s;
+    border: 0;
+}
+
+    .section-add-info:hover{
+        transform: scale(0.95);
+    }
+
+.section-title__block{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #EEE;
+    padding: 10px 30px;
+}
+
+.section-title{
+    font-size: 16px;
+    color: #000;
+    text-align: left;
+    width: 50%;
+}
+
+.contact-row{
+    padding: 12px 25px;
+    border-top: 1px solid #EEE;
+}
+
+.contact-row p{
+    padding: 10px 0;
+}
+
+.contact-row span{
+    padding-right: 20px;
+}
+
+.name-number, .contact-comment{
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.number{
+    margin-left: 45px;
+}
+
+.gateway-row{
+    text-align: left;
+    padding: 12px 25px;
+    border-top: 1px solid #EEE;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.gateway-row span{
+    padding-right: 20px;
+    margin-right: 30px;
+}

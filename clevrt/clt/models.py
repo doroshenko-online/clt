@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Test_Model(models.Model):
+    name = models.CharField(max_length=15, unique=True, null=True)
+    title = models.CharField(max_length=50)
+    comment = models.CharField(max_length=50, blank=True)
+
+class Test_Child(models.Model):
+    parent = models.ForeignKey(Test_Model, on_delete=models.CASCADE)
+    info = models.DateField()
+
+class Test_C(models.Model):
+    parent = models.ForeignKey(Test_Model, on_delete=models.CASCADE)
+    sative = models.CharField(max_length=50)
+
 class Country(models.Model):
     country = models.CharField(max_length=100, verbose_name='страна')
 

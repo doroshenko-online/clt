@@ -30,4 +30,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('test/', views.Test.as_view(), name='test'),
     path('clients/', views.Clients.as_view(), name='clients'),
+    path('client/', views.ClientView.as_view(), name='client'),
+ #   path('add-client/', views.Add_Client.as_view(), name='add-client'),
+    path('test/', views.Add_Client.as_view(), name='test'),
 ] + static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static"))
