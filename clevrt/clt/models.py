@@ -8,13 +8,23 @@ class Test_Model(models.Model):
     title = models.CharField(max_length=50)
     comment = models.CharField(max_length=50, blank=True)
 
+    def __str__(self):
+        return self.name
+
 class Test_Child(models.Model):
     parent = models.ForeignKey(Test_Model, on_delete=models.CASCADE)
-    info = models.DateField()
+    info = models.CharField(max_length=50)
+    date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.info
 
 class Test_C(models.Model):
     parent = models.ForeignKey(Test_Model, on_delete=models.CASCADE)
     sative = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.sative
 
 class Country(models.Model):
     country = models.CharField(max_length=100, verbose_name='страна')

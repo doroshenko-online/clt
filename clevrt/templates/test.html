@@ -6,12 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% for f in form %}
-        {{f}}
-        {%endfor%}
-        <button type="submit">Submit</button>
-    </form>
+    {% if form %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for f in form %}
+            {{f}}
+            {%endfor%}
+            <button type="submit">Submit</button>
+        </form>
+    {% elif data %}
+        {{data}}
+        <form action="" method="POST">
+            {%csrf_token%}
+            {{formset.as_p}}
+            <button type="submit">Save</button>
+        </form>
+    {% endif %}
 </body>
 </html>
