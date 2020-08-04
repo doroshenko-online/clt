@@ -21,6 +21,12 @@
             {{formset.as_p}}
             <button type="submit">Save</button>
         </form>
+    {% elif object_list %}
+
+        {% for test in object_list %}
+            <p>{{test}}</p>
+        {% endfor %}
+
     {% endif %}
 </body>
 </html>

@@ -9,5 +9,6 @@ class TestForm(forms.ModelForm):
         fields = '__all__'
         exclude = ()
 
-ChildFormSet = inlineformset_factory(Test_Model, Test_Child, fields=('info',), extra=1)
-CFormSet = inlineformset_factory(Test_Model, Test_C, fields=('sative',), extra=1)
+ChildFormSet = inlineformset_factory(Test_Model, Test_Child, form=TestForm, extra=1)
+
+CFormSet = inlineformset_factory(Test_Model, Test_C, form=TestForm, extra=1)

@@ -35,5 +35,6 @@ urlpatterns = [
     #path('test/', views.Add_Client.as_view(), name='test'),
     path('test/', views.Test.as_view(), name='test'),
     #path('test-add/', views.TestAdd.as_view(), name='test-add'),
-    path('test/<int:test_id>/', views.TestDetail.as_view(), name='test-add'),
+    #path('test/<int:test_id>/', views.TestDetail.as_view(), name='test-add'),
+    path('test/add/', views.TestDetail.as_view(), name='test-add'),
 ] + static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static"))
