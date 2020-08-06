@@ -1,0 +1,89 @@
+{% extends "../base_generic.html" %}
+{% load static %}
+{% block title %}<title>Клиенты</title>{% endblock %}
+{% block content %}
+
+<main class="main-wrapper__white">
+    <div class="container">
+
+        <!--section active clients start-->
+
+        <section class="active-clients">
+            <div class="title-block">
+                <h2 class="title">активные клиенты</h2>
+            </div>
+            {% for country in countries %}
+                <div class="addition-info__title-block coutry-title">
+                    <h3 class="addition-info__title">{{ country }}</h3>
+                </div>
+                {% for city in cities %}
+                    <p class="city-title">{{ city }}</p>
+                    <ul class="clients">
+                        {% for client in active_clients %}
+                            <li class="client">
+                                <p><a href="#!" class="client-link">{{ client }}</a>({{ client.title_comment }})</p>
+                                <a href="#!" class="client-edit__link">Редактировать</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            {% endfor %}
+
+        </section>
+
+        <!--section active clients end-->
+
+        <!--section potential clients start-->
+        <section class="potential-disabled">
+            <div class="potential-clients">
+                <div class="title-block">
+                    <h2 class="title">потенциальные клиенты</h2>
+                </div>
+
+                <ul class="clients">
+                    {% for client in potential_clients %}
+                            <li class="client">
+                                <p><a href="#!" class="client-link">{{ client }}</a>({{ client.title_comment }})</p>
+                                <a href="#!" class="client-edit__link">Редактировать</a>
+                            </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!--section potential clients end-->
+
+            <!--section disabled clients start-->
+
+            <div class="disabled-clients">
+                <div class="title-block">
+                    <h2 class="title">отключенные клиенты</h2>
+                </div>
+
+                <ul class="clients">
+                    {% for client in disabled_clients %}
+                            <li class="client">
+                                <p><a href="#!" class="client-link">{{ client }}</a>({{ client.title_comment }})</p>
+                                <a href="#!" class="client-edit__link">Редактировать</a>
+                            </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!--section disabled clients end-->
+
+        <!--section buttons clients start-->
+
+            <section class="buttons__clients">
+                <button id="add-client" class="button-st button-blue"><a href="{% url 'clt:client-add' %}" class="button-link">Добавить клиента</a></button>
+                <button id="add-country" class="button-st button-orange">Добавить страну</button>
+                <button id="add-city" class="button-st button-orange">Добавить город</button>
+                <button id="add-number" class="button-st button-orange">Добавить номер телефона</button>
+            </section>
+
+        <!--section buttons clients end-->
+
+    </div>
+</main>
+
+{% endblock %}

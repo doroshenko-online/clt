@@ -14,6 +14,10 @@
     {% for form in children.forms %}
         {{ form.as_p }}
     {% endfor %}
+
+    {% for form in c.forms %}
+        {{ form.as_p }}
+    {% endfor %}
     <input type="submit" value="Save"/>
 </form>
 </body>

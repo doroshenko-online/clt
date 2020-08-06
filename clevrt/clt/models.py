@@ -56,10 +56,11 @@ class Client(models.Model):
         (OFF, 'Отключенный'),
         (POT, 'Потенциальный'),
     ]
-    name = models.CharField(max_length=100, verbose_name='название службы')
+    name = models.CharField(max_length=100, unique=True, verbose_name='название службы')
     country = models.ForeignKey(Country, max_length=100, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name='страна')
     city = models.ForeignKey(City, max_length=100, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name='город')
     hostname = models.CharField(max_length=100, blank=True, default='', verbose_name='хостнейм сервера')
+    gateway_info = models.CharField(max_length=250, default='', blank=True, verbose_name='информация о роутере')
     local_ip = models.CharField(max_length=40, blank=True, default='', verbose_name='локальный ip сервера')
     title_comment = models.CharField(max_length=50, blank=True, default='', verbose_name='комментарий клиента(виден в списке клиентов)')
     officeIp1 = models.CharField(max_length=16, blank=True, verbose_name='офисный IP1')
@@ -83,17 +84,6 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
-class Gateway_Info(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
-    gateway_info = models.CharField(max_length=250, default='', blank=True, verbose_name='информация о роутере')
-
-    class Meta:
-        verbose_name = 'Информация о роутере'
-        verbose_name_plural = 'Информация о роутерах'
-
-    def __str__(self):
-        return self.client.name
-
 class Ip_List(models.Model):
     ip = models.CharField(max_length=16, verbose_name='ip')
     port = models.CharField(max_length=6, default='22', verbose_name='port')
@@ -109,7 +99,7 @@ class Ip_List(models.Model):
 class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
-    number = models.CharField(max_length=15, verbose_name='номер телефона')
+    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона')
     comment = models.TextField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')
@@ -131,14 +121,14 @@ class Client_Gateway(models.Model):
         ('D-link', 'D-link'),
         ('Cisco', 'Cisco'),
         ('SPRUT', 'SPRUT'),
-        ('Unknown', 'Unknown'),
+        ('Gudwin', 'Gudwin'),
     ]
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     ip = models.CharField(max_length=16, verbose_name='ip')
     port = models.CharField(max_length=6, default='80', verbose_name='port')
     login = models.CharField(max_length=100, verbose_name='логин')
     secret = models.CharField(max_length=100, verbose_name='пароль')
-    type_gateway = models.CharField(max_length=50, choices=TYPES, default='Unknown', verbose_name='вендор оборудования')
+    type_gateway = models.CharField(max_length=50, choices=TYPES, default='', verbose_name='вендор оборудования')
 
     class Meta:
         verbose_name = 'Шлюз'
@@ -236,5 +226,3 @@ class Office_Simcard(models.Model):
     def __str__(self):
         text = str(self.channel_name)+"("+str(self.sim_number)+") - "+str(self.client)
         return text
-    
-    

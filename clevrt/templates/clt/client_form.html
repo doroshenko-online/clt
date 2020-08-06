@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {{ ip_list.management_form }}
+
+    {% for form in ip_list.forms %}
+        {{ form.as_p }}
+    {% endfor %}
+
+    {% for form in ccs.forms %}
+        {{ form.as_p }}
+    {% endfor %}
+
+    {{ client_numbers.management_form }}
+
+    {% for form in client_numbers.forms %}
+        {{ form.as_p }}
+    {% endfor %}
+
+    {{ client_gateways.management_form }}
+
+    {% for form in client_gateways.forms %}
+        {{ form.as_p }}
+    {% endfor %}
+
+
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>

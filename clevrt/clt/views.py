@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic.edit import FormView
 from django.views.generic.base import View
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from django.urls import reverse_lazy
@@ -32,66 +32,69 @@ class TestDetail(CreateView):
     success_url = reverse_lazy('clt:test')
 
     def get_context_data(self, **kwargs):
-        data = super(TestDetail, self).get_context_data(**kwargs)
+        data = super().get_context_data(**kwargs)
+        print(data)
         if self.request.POST:
             data['children'] = ChildFormSet(self.request.POST)
+            data['c'] = CFormSet(self.request.POST)
         else:
             data['children'] = ChildFormSet()
+            data['c'] = CFormSet()
         return data
 
-    # def form_valid(self, form):
-    #     context = self.get_context_data()
-    #     familymembers = context['children']
-    #     with transaction.atomic():
-    #         self.object = form.save()
-    #
-    #         if familymembers.is_valid():
-    #             familymembers.instance = self.object
-    #             familymembers.save()
-    #     return super(TestDetail, self).form_valid(form)
-    # def get(self, request, *args, **kwargs):
-    #     data = self.model_data.objects.get(id=kwargs['test_id'])
-    #     #ChildFormSet = inlineformset_factory(Test_Model, Test_Child, fields=('info',), extra=1)
-    #     formset = ChildFormSet(instance=data)
-    #     return render(request, template_name=self.template_name, context={'data': data, 'formset': formset})
-    #
-    # def post(self, request, *args, **kwargs):
-    #     #ChildFormSet = inlineformset_factory(Test_Model, Test_Child, fields=('info',), extra=1)
-    #     data = self.model_data.objects.get(id=kwargs['test_id'])
-    #     formset = ChildFormSet(request.POST, instance=data)
-    #     if formset.is_valid():
-    #         formset.save()
-    #     formset = ChildFormSet(instance=data)
-    #     return render(request, template_name=self.template_name, context={'data': data, 'formset': formset})
-
-
-
-class TestAdd(View):
-    model = Test_Model
-    template_name = 'test_model_list.html'
-    form_class = TestForm
-    success_url = '/'
-    def get(self, request, *args, **kwargs):
-        form = TestFormSet
+    def form_valid(self, form):
         print(form)
-        return render(request, template_name=self.template_name, context={'form': form})
+        context = self.get_context_data()
+        print(context)
+        familymembers = context['children']
+        c = context['c']
+        with transaction.atomic():
+            self.object = form.save()
 
-    #def post(self, request, *args, **kwargs):
-   #     form = TestFormSet
-   #     d
-        
+            if familymembers.is_valid():
+                familymembers.instance = self.object
+                familymembers.save()
+        return super(TestDetail, self).form_valid(form)
 
-class Clients(View):
-    template_name = 'clients.html'
-    def get(self, request):
-        return render(request, template_name=self.template_name)
 
-class ClientView(View):
-    template_name = 'client.html'
-    def get(self, request):
-        return render(request, template_name=self.template_name)
+class ClientCreate(LoginRequiredMixin, CreateView):
+    model = Client
+    fields = ['name', 'country', 'city', 'hostname', 'gateway_info', 'local_ip', 'title_comment', 'officeIp1',
+                    'officeIp2', 'officeIp3', 'officeIp4', 'client_status', 'os_version', 'ast_version',
+                    'vps_own', 'hide', 'additional_info', 'date_on', 'date_off', ]
+    success_url = reverse_lazy('clt:test')
 
-class Add_Client(View):
-    template_name = 'add-change-client.html'
-    def get(self, request):
-        return render(request, template_name=self.template_name)
+    def get_context_data(self, **kwargs):
+        data = super(ClientCreate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            print(self.request.POST)
+            data['ip_list'] = Ip_ListFormSet(self.request.POST)
+            data['client_numbers'] = Client_NumberFormSet(self.request.POST)
+            data['client_gateways'] = Client_GatewayFormSet(self.request.POST)
+            data['ccs'] = CCSFormSet(self.request.POST)
+        else:
+            data['ip_list'] = Ip_ListFormSet()
+            data['client_numbers'] = Client_NumberFormSet()
+            data['client_gateways'] = Client_GatewayFormSet()
+            data['ccs'] = CCSFormSet()
+        return data
+
+
+class Clients(LoginRequiredMixin, ListView):
+    model = Client
+
+    def get_context_data(self, **kwargs):
+        data = {'active_clients': self.model.objects.filter(client_status='On').order_by('name'),
+                'potential_clients': self.model.objects.filter(client_status='Pot').order_by('name'),
+                'disabled_clients': self.model.objects.filter(client_status='Off').order_by('name'),
+                'cities': City.objects.all().order_by('city'),
+                'countries': Country.objects.all().order_by('country')}
+        if self.request.method == 'GET':
+            return data
+
+
+
+
+class ClientView(LoginRequiredMixin, DetailView):
+    model = Client
+

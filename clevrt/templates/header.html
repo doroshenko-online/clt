@@ -12,7 +12,7 @@
             <ul class="buttons">
                 <li><div class="main-logo"><a href="/" class="logo-link">
                 <img src="{% static 'clt/img/svg/Logo.svg' %}" alt="Главная" class="logo__thumb" /></a></div></li>
-                <li><div class="button"><a class="btn-link" href="clients/">Клиенты</a></div></li>
+                <li><div class="button"><a class="btn-link" href="{% url 'clt:clients' %}">Клиенты</a></div></li>
                 <li><div class="button"><a class="btn-link" href="#!">Наши IP</a></div></li>
                 <li><div class="button"><a class="btn-link" href="#!">Офисные шлюзы</a></div></li>
                 <li><div class="button"><a class="btn-link" href="#!">Logs</a></div></li>
