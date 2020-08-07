@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Test_Model(models.Model):
-    name = models.CharField(max_length=15, unique=True, null=True)
+    name = models.CharField(max_length=15, unique=True, null=True, error_messages={'unique': 'Такой клиент уже существует'})
     title = models.CharField(max_length=50)
     comment = models.CharField(max_length=50, blank=True)
 
@@ -27,7 +27,7 @@ class Test_C(models.Model):
         return self.sative
 
 class Country(models.Model):
-    country = models.CharField(max_length=100, verbose_name='страна')
+    country = models.CharField(max_length=100, verbose_name='страна', unique=True, error_messages={'unique': 'Такая страна уже существует'})
 
     class Meta:
         verbose_name = 'Страна'
@@ -38,7 +38,7 @@ class Country(models.Model):
 
 class City(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name='страна')
-    city = models.CharField(max_length=100, verbose_name='город')
+    city = models.CharField(max_length=100, verbose_name='город', unique=True, error_messages={'unique': 'Такой город уже существует'})
 
     class Meta:
         verbose_name = 'Город'
@@ -56,7 +56,7 @@ class Client(models.Model):
         (OFF, 'Отключенный'),
         (POT, 'Потенциальный'),
     ]
-    name = models.CharField(max_length=100, unique=True, verbose_name='название службы')
+    name = models.CharField(max_length=100, unique=True, verbose_name='название службы', error_messages={'unique': 'Такой клиент уже существует'})
     country = models.ForeignKey(Country, max_length=100, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name='страна')
     city = models.ForeignKey(City, max_length=100, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name='город')
     hostname = models.CharField(max_length=100, blank=True, default='', verbose_name='хостнейм сервера')
@@ -99,7 +99,7 @@ class Ip_List(models.Model):
 class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
-    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона')
+    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона', unique=True, error_messages={'unique': 'Такой номер телефона уже внесен в базу'})
     comment = models.TextField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')
@@ -176,24 +176,6 @@ class Log_String(models.Model):
 
     def __str__(self):
         return self.client
-
-class User_Setting(models.Model):
-    KITTY = 'kitty'
-    PUTTY = 'putty'
-    PROGRAMM = [
-        (KITTY, 'kitty'),
-        (PUTTY, 'putty'),
-    ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
-    programm = models.CharField(max_length=6, choices=PROGRAMM, blank=True, default=KITTY, verbose_name='программа для ssh')
-    path = models.CharField(max_length=200, blank=True, null=True, verbose_name='путь к kitty или putty')
-
-    class Meta:
-        verbose_name = 'Настройка пользователя'
-        verbose_name_plural = 'Настройки пользователя'
-
-    def __str__(self):
-        return self.user
 
 
 class Office_Gateway(models.Model):
