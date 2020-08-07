@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from django.urls import reverse_lazy
 from django.db import transaction
+from django.core.exceptions import ValidationError
 
 class Index(View):
     template_name = 'index.html'
@@ -28,12 +29,12 @@ class Test(ListView):
 
 class TestDetail(CreateView):
     model = Test_Model
-    fields =['name', 'title', 'comment']
+    fields =['name',]
+    error_messages = {'name': {'unique_together': 'Такой клиент уже существует'}}
     success_url = reverse_lazy('clt:test')
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        print(data)
         if self.request.POST:
             data['children'] = ChildFormSet(self.request.POST)
             data['c'] = CFormSet(self.request.POST)
@@ -43,17 +44,18 @@ class TestDetail(CreateView):
         return data
 
     def form_valid(self, form):
-        print(form)
         context = self.get_context_data()
-        print(context)
         familymembers = context['children']
         c = context['c']
-        with transaction.atomic():
-            self.object = form.save()
-
-            if familymembers.is_valid():
-                familymembers.instance = self.object
-                familymembers.save()
+        if self.model.objects.get(name=form.name):
+            raise ValidationError(_('Такой клиент уде существует'))
+        self.object = form.save()
+        if familymembers.is_valid():
+            familymembers.instance = self.object
+            familymembers.save()
+        if c.is_valid():    
+            c.instance = self.object
+            c.save()
         return super(TestDetail, self).form_valid(form)
 
 
