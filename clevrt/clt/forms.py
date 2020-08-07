@@ -4,7 +4,6 @@ from django.forms import formset_factory, inlineformset_factory
 from django.forms.models import BaseInlineFormSet
 
 class TestForm(forms.ModelForm):
-    name = forms.CharField(error_messages={'required': 'Please let us know what to call you!'})
     class Meta:
         model = Test_Model
         fields = '__all__'
