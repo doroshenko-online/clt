@@ -4,10 +4,17 @@ from django.forms import formset_factory, inlineformset_factory
 from django.forms.models import BaseInlineFormSet
 
 class TestForm(forms.ModelForm):
+    print(8888888)
     class Meta:
         model = Test_Model
         fields = '__all__'
         exclude = ()
+        #error_messages = {'name': {'unique': ('Такой клиент уже pizda'),}}
+
+    def clean_name(self, *args, **kwargs):
+        print(self.cleaned_data)
+        name = self.cleaned_data['name']
+        print(name)
 
 
 ChildFormSet = inlineformset_factory(Test_Model, Test_Child, form=TestForm, extra=1)

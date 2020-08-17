@@ -99,7 +99,7 @@ class Ip_List(models.Model):
 class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
-    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона', unique=True, error_messages={'unique': 'Такой номер телефона уже внесен в базу'})
+    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона', error_messages={'unique': 'Такой номер телефона уже внесен в базу'})
     comment = models.TextField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')

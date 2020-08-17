@@ -12,7 +12,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from django.urls import reverse_lazy
 from django.db import transaction
-from django.core.exceptions import ValidationError
+#from django.core.exceptions import ValidationError
+from django.forms import ValidationError
+from django.http import JsonResponse
 
 class Index(View):
     template_name = 'index.html'
@@ -30,25 +32,50 @@ class Test(ListView):
 class TestDetail(CreateView):
     model = Test_Model
     fields =['name',]
-    error_messages = {'name': {'unique_together': 'Такой клиент уже существует'}}
     success_url = reverse_lazy('clt:test')
+    print(0)
+    def form_invalid(self, form):
+        print(444444444444444444)
+        name = self.request.POST['name']
+        print(name)
+        if len(self.model.objects.filter(name=name)) > 0:
+          print('pizda')
+          form.errors['name'][0] = 'PIZDA'
+
+        return super().form_invalid(form)
+
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
+        print(1)
         if self.request.POST:
+            name = self.request.POST
+            print(self.model.objects.filter(name=name))
+            print(len(self.model.objects.filter(name=name)))
+            #if len(self.model.objects.filter(name=name)) == 0:
+            #    print('pizda')
+            #    raise ValidationError('Такой клиент уже pizda')
+                #error_messages = {'name': {'unique': 'Такой клиент уже pizda'}}
+            print(2)
             data['children'] = ChildFormSet(self.request.POST)
             data['c'] = CFormSet(self.request.POST)
+            print(3)
+            print(data)
         else:
+            print(999)
             data['children'] = ChildFormSet()
             data['c'] = CFormSet()
+        print(4)
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
         familymembers = context['children']
         c = context['c']
+        print(5)
+        print(self.model.objects.get(name=form.name))
         if self.model.objects.get(name=form.name):
-            raise ValidationError(_('Такой клиент уде существует'))
+            raise ValidationError(_('Такой клиент уже pizda'))
         self.object = form.save()
         if familymembers.is_valid():
             familymembers.instance = self.object
