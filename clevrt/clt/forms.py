@@ -38,4 +38,3 @@ class CountryForm(forms.ModelForm):
 Ip_ListFormSet = inlineformset_factory(Client, Ip_List, form=ClientForm, extra=1)
 Client_NumberFormSet = inlineformset_factory(Client, Client_Number, form=ClientForm, extra=1)
 Client_GatewayFormSet = inlineformset_factory(Client, Client_Gateway, form=ClientForm, extra=1)
-CCSFormSet = inlineformset_factory(Client, CCS, form=ClientForm, extra=1, max_num=1)

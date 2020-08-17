@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Test_Model(models.Model):
-    name = models.CharField(max_length=15, unique=True, null=True, error_messages={'unique': 'Такой клиент уже существует'})
+    name = models.CharField(max_length=15, unique=True, null=True)
     title = models.CharField(max_length=50)
     comment = models.CharField(max_length=50, blank=True)
 
@@ -57,8 +57,8 @@ class Client(models.Model):
         (POT, 'Потенциальный'),
     ]
     name = models.CharField(max_length=100, unique=True, verbose_name='название службы', error_messages={'unique': 'Такой клиент уже существует'})
-    country = models.ForeignKey(Country, max_length=100, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name='страна')
-    city = models.ForeignKey(City, max_length=100, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name='город')
+    country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, verbose_name='страна')
+    city = models.ForeignKey(City, on_delete=models.DO_NOTHING, verbose_name='город')
     hostname = models.CharField(max_length=100, blank=True, default='', verbose_name='хостнейм сервера')
     gateway_info = models.CharField(max_length=250, default='', blank=True, verbose_name='информация о роутере')
     local_ip = models.CharField(max_length=40, blank=True, default='', verbose_name='локальный ip сервера')
@@ -70,6 +70,11 @@ class Client(models.Model):
     client_status = models.CharField(max_length=3, choices=CLIENT_STATUS, default=POT, verbose_name='статус клиента')
     os_version = models.CharField(max_length=10, blank=True, default='', verbose_name='версия ос')
     ast_version = models.CharField(max_length=10, blank=True, default='', verbose_name='версия астериска')
+    login_ccs = models.CharField(max_length=20, blank=True, default='', verbose_name='логин')
+    secret_ccs = models.CharField(max_length=100, blank=True, default='', verbose_name='пароль')
+    ccs_version = models.CharField(max_length=15, blank=True, default='', verbose_name='версия ccs')
+    cphone_maxvers = models.CharField(max_length=20, blank=True, default='',
+                                         verbose_name='максимальная версия C-Phone')
     vps_own = models.BooleanField(default=False, verbose_name='наша впс')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     additional_info = models.TextField(max_length=500, default='', blank=True, verbose_name='дополнительная информация')
@@ -85,8 +90,8 @@ class Client(models.Model):
         return self.name
 
 class Ip_List(models.Model):
-    ip = models.CharField(max_length=16, verbose_name='ip')
-    port = models.CharField(max_length=6, default='22', verbose_name='port')
+    ip = models.CharField(max_length=16, null=True, blank=True, verbose_name='ip')
+    port = models.CharField(max_length=6, null=True, blank=True, default='22', verbose_name='port')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
 
     class Meta:
@@ -99,7 +104,7 @@ class Ip_List(models.Model):
 class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
-    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона', error_messages={'unique': 'Такой номер телефона уже внесен в базу'})
+    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона')
     comment = models.TextField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')
@@ -124,11 +129,11 @@ class Client_Gateway(models.Model):
         ('Gudwin', 'Gudwin'),
     ]
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
-    ip = models.CharField(max_length=16, verbose_name='ip')
-    port = models.CharField(max_length=6, default='80', verbose_name='port')
-    login = models.CharField(max_length=100, verbose_name='логин')
-    secret = models.CharField(max_length=100, verbose_name='пароль')
-    type_gateway = models.CharField(max_length=50, choices=TYPES, default='', verbose_name='вендор оборудования')
+    ip = models.CharField(max_length=16, null=True, blank=True, verbose_name='ip')
+    port = models.CharField(max_length=6, null=True, blank=True, default='80', verbose_name='port')
+    login = models.CharField(max_length=100, null=True, blank=True, verbose_name='логин')
+    secret = models.CharField(max_length=100, null=True, blank=True, verbose_name='пароль')
+    type_gateway = models.CharField(max_length=50, null=True, blank=True, choices=TYPES, default='', verbose_name='вендор оборудования')
 
     class Meta:
         verbose_name = 'Шлюз'
@@ -136,13 +141,6 @@ class Client_Gateway(models.Model):
 
     def __str__(self):
         return self.type_gateway
-
-class CCS(models.Model):
-    client = models.ForeignKey(Client, verbose_name="клиент", on_delete=models.CASCADE)
-    login = models.CharField(max_length=20, blank=True, default='', verbose_name='логин')
-    secret = models.CharField(max_length=100, blank=True, default='', verbose_name='пароль')
-    version = models.CharField(max_length=15, blank=True, default='', verbose_name='версия ccs')
-    cphone_maxversion = models.CharField(max_length=20, blank=True, default='', verbose_name='максимальная версия C-Phone')
 
 class Columns(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="клиент")
