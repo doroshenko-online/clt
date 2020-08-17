@@ -119,7 +119,7 @@ class ClientCreate(LoginRequiredMixin, CreateView):
         else:
             if len(client_numbers.errors[0]) > 0:
                 if client_numbers.errors[0]['number']:
-                    client_numbers.errors[0]['number'][0] = "Номер телефона уже закреплен за клинетом"
+                    client_numbers.errors[0]['number'][0] = "Номер телефона уже закреплен за клиентом"
                 if client_numbers.errors[0]['name']:
                     client_numbers.errors[0]['name'][0] = "Необходимо заполнить имя"
                 return render(self.request, 'clt/client_form.html', {'form': form, 'client_numbers': client_numbers, 'client_gateways': client_gateways,
