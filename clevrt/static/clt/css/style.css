@@ -84,7 +84,6 @@ h2 {
     font-size: 18px;
     line-height: 25px;
     text-align: center;
-    vertical-align: middle;
     color: #FFFFFF;
     text-transform: uppercase;
     display: block;
@@ -128,6 +127,10 @@ button{
     button:hover, button:active, button:active{
         transform: scale(0.95);
     }
+
+input{
+    vertical-align: middle;
+}
 
 textarea{
     font-family: "Roboto";
@@ -179,7 +182,6 @@ section{
 .button-link{
     color: #fff;
 }
-
 /* header styles start */
 
 .header {
@@ -695,7 +697,31 @@ section{
 .info-row__text{
     display: block;
     padding: 10px 0;
+    margin-right: 30px;
 }
+
+.info-row__input{
+    display: block;
+    padding: 10px 0;
+    margin-right: 30px;
+}
+
+.info-row__input input, .info-row__input span input, .info-row__input textarea, .contact-row p input, .gateway-row span input, .contact-comment textarea{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 13px;
+    color: #000000;
+    border: 1px solid #d4d4d4;
+    padding: 5px 10px;
+    border-radius: 21px;
+    transition: 0.15s all;
+}
+
+    .info-row__input input:focus, .info-row__input span input:focus, .info-row__input textarea:focus, .contact-row p input:focus, .gateway-row span input:focus, .contact-comment textarea:focus{
+        border: 1px solid #000;
+    }
 
 .ip-port__info{
     font-family: Roboto;
@@ -780,5 +806,17 @@ section{
 
 .gateway-row span{
     padding-right: 20px;
+    margin-right: 30px;
+}
+
+#save-client {
+    margin-top: 20px;
+}
+
+.hide-span{
+    margin-left: 45px;
+}
+
+.contact-comment textarea{
     margin-right: 30px;
 }

@@ -77,13 +77,13 @@ class TestDetail(CreateView):
             c.save()
         return super(TestDetail, self).form_valid(form)
 
-
 class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     fields = ['name', 'country', 'city', 'hostname', 'gateway_info', 'local_ip', 'title_comment', 'officeIp1',
-                    'officeIp2', 'officeIp3', 'officeIp4', 'client_status', 'os_version', 'ast_version', 'login_ccs', 'secret_ccs', 'ccs_version', 'cphone_maxvers',
+                    'officeIp2', 'officeIp3', 'officeIp4', 'client_status', 'os_version',
+              'ast_version', 'login_ccs', 'secret_ccs', 'ccs_version', 'cphone_maxvers',
                     'vps_own', 'hide', 'additional_info', 'date_on', 'date_off', ]
-    success_url = reverse_lazy('clt:test')
+    success_url = reverse_lazy('clt:clients')
 
     def form_invalid(self, form):
         name = self.request.POST['name']
@@ -108,7 +108,6 @@ class ClientCreate(LoginRequiredMixin, CreateView):
         ip_list = context['ip_list']
         client_numbers = context['client_numbers']
         client_gateways = context['client_gateways']
-        print(5)
         if client_numbers.is_valid() and ip_list.is_valid() and client_gateways.is_valid():
             ip_list.instance = form.save()
             ip_list.save()
@@ -118,11 +117,16 @@ class ClientCreate(LoginRequiredMixin, CreateView):
             client_numbers.save()
         else:
             if len(client_numbers.errors[0]) > 0:
-                if client_numbers.errors[0]['number']:
-                    client_numbers.errors[0]['number'][0] = "Номер телефона уже закреплен за клиентом"
-                if client_numbers.errors[0]['name']:
+                number = str(self.request.POST['client_number_set-0-number'])
+                name = str(self.request.POST['client_number_set-0-name'])
+                print(name)
+                if name == '' or None:
                     client_numbers.errors[0]['name'][0] = "Необходимо заполнить имя"
-                return render(self.request, 'clt/client_form.html', {'form': form, 'client_numbers': client_numbers, 'client_gateways': client_gateways,
+                check_number = Client_Number.objects.filter(number=number)
+                client_numbers.errors[0]['number'][0] = "Номер {} уже закреплен за клиентом {}".format(number, str(check_number[0]))
+
+                return render(self.request, 'clt/client_form.html',
+                              {'form': form, 'client_numbers': client_numbers, 'client_gateways': client_gateways,
                                                            'ip_list': ip_list, 'formset_errors': client_numbers.errors})
         return super(ClientCreate, self).form_valid(form)
 

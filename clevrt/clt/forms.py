@@ -9,13 +9,6 @@ class TestForm(forms.ModelForm):
         model = Test_Model
         fields = '__all__'
         exclude = ()
-        #error_messages = {'name': {'unique': ('Такой клиент уже pizda'),}}
-
-    def clean_name(self, *args, **kwargs):
-        print(self.cleaned_data)
-        name = self.cleaned_data['name']
-        print(name)
-
 
 ChildFormSet = inlineformset_factory(Test_Model, Test_Child, form=TestForm, extra=1)
 CFormSet = inlineformset_factory(Test_Model, Test_C, form=TestForm, extra=2)

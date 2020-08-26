@@ -1,34 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>form</title>
-</head>
-<body>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+{% extends "../base_generic.html" %}
+{% load static %}
+{% block title %}<title>Добавить клиента</title>{% endblock %}
+{% block content %}
 
-    {{ ip_list.management_form }}
+<main class="main-wrapper__white">
+    <div class="client-title__block">
+        <h1 class="client-title">Добавить клиента</h1>
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="info-row ">
+            <p class="info-title">Название службы:</p>
+            <p class="info-row__input">{{ form.name }}</p>
+        </div>
+        <div class="info-row ">
+            <p class="info-title">Страна:</p>
+            <p class="info-row__input">{{ form.country }}</p>
+        </div>
+        <div class="info-row ">
+            <p class="info-title">Город:</p>
+            <p class="info-row__input">{{ form.city }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Хостнейм сервера:</p>
+            <p class="info-row__input">{{ form.hostname }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Локальный ip сервера:</p>
+            <p class="info-row__input">{{ form.local_ip }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Комментарий клиента(виден в списке клиентов):</p>
+            <p class="info-row__input">{{ form.title_comment }}</p>
+        </div>
+        {{ ip_list.management_form }}
+        {% for form in ip_list.forms %}
+            <div class="info-row">
+                <p class="info-title">IP-port сервера:</p>
+                <p class="info-row__input">IP: {{ form.ip }} Port: {{ form.port }}</p>
+                <p class="info-row__input"><span class="delete-item-form">Удалить:  {{ form.DELETE }}</span></p>
+                <button class="section-add-info" id="add-ip-port__link">Добавить ip-port</button>
+            </div>
+        {% endfor %}
+        <div class="info-row">
+            <p class="info-title">Информация о роутере:</p>
+            <p class="info-row__input">{{ form.gateway_info }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Офисный IP1:</p>
+            <p class="info-row__input">{{ form.officeIp1 }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Офисный IP2:</p>
+            <p class="info-row__input">{{ form.officeIp2 }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Офисный IP3:</p>
+            <p class="info-row__input">{{ form.officeIp3 }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Офисный IP4:</p>
+            <p class="info-row__input">{{ form.officeIp4 }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Дополнительная информация:</p>
+            <p class="info-row__input">{{ form.additional_info }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Статус клиента:</p>
+            <p class="info-row__input">{{ form.client_status }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Дата подключения:</p>
+            <p class="info-row__input">{{ form.date_on }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Дата отключения:</p>
+            <p class="info-row__input">{{ form.date_off }}</p>
+        </div>
 
-    {% for form in ip_list.forms %}
-        {{ form.as_p }}
-    {% endfor %}
+        <div class="section-title__block">
+            <h2 class="section-title">ИНФОРМАЦИЯ О СЕРВЕРЕ</h2>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Наша VPS:</p>
+            <p class="info-row__input">{{ form.vps_own }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Версия OS:</p>
+            <p class="info-row__input">{{ form.os_version }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Версия Asterisk:</p>
+            <p class="info-row__input">{{ form.ast_version }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Версия CCS:</p>
+            <p class="info-row__input">{{ form.ccs_version }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Логин CCS:</p>
+            <p class="info-row__input">{{ form.login_ccs }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Пароль CCS:</p>
+            <p class="info-row__input">{{ form.secret_ccs }}</p>
+        </div>
+        <div class="info-row">
+            <p class="info-title">Максимальная версия C-Phone:</p>
+            <p class="info-row__input">{{ form.cphone_maxvers }}</p>
+        </div>
 
-    {{ client_numbers.management_form }}
+        <div class="section-title__block">
+            <h2 class="section-title">КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
+            <button class="section-add-info" id="add-number__link">Добавить номер</button>
+        </div>
+        {{ client_numbers.management_form }}
+        {% for form in client_numbers %}
+            <div class="contact-row">
+                <p class="name-number"><span class="name">Имя:</span>{{ form.name }}<span class="number">Номер:</span>{{ form.number }}<span class="hide-span">Скрыть(Не будет отображаться в карточке клиента):</span>{{ form.hide }}</p>
+                <p class="contact-comment"><span class="comment-title">Комментарий:</span>{{ form.comment }}<span class="delete-item-form">Удалить:  {{ form.DELETE }}</span></p>
+            </div>
+        {% endfor %}
 
-    {% for form in client_numbers.forms %}
-        {{ form.as_p }}
-    {% endfor %}
+        <div class="section-title__block">
+            <h2 class="section-title">ШЛЮЗЫ</h2>
+            <button class="section-add-info" id="add-gateway__link">Добавить шлюз</button>
+        </div>
+        {{ client_gateways.management_form }}
+        {% for form in client_gateways %}
+            <div class="gateway-row__block">
+                    <p class="gateway-row">
+                        <span class="gateway-ip">IP: {{ form.ip }}</span>
+                        <span class="gateway-port">Port: {{ form.port }}</span>
+                        <span class="gateway-login">Логин: {{ form.login }}</span>
+                        <span class="gateway-password">Пароль: {{ form.secret }}</span>
+                        <span class="gateway-vendor">Вендор оборудования: {{ form.type_gateway }}</span>
+                        <span class="delete-item-form">Удалить:  {{ form.DELETE }}</span>
+                    </p>
+            </div>
+        {% endfor %}
 
-    {{ client_gateways.management_form }}
+        <button type="submit" id="save-client" class="button-st button-blue">Сохранить клиента</button>
 
-    {% for form in client_gateways.forms %}
-        {{ form.as_p }}
-    {% endfor %}
+    </form>
+</main>
 
-
-    <input type="submit" value="Save"/>
-</form>
-</body>
-</html>
+{% endblock %}
