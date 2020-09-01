@@ -21,8 +21,8 @@
                     <ul class="clients">
                         {% for client in active_clients %}
                             <li class="client">
-                                <p><a href="#!" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
-                                <a href="#!" class="client-edit__link">Редактировать</a>
+                                <p><a href="{% url 'clt:client' pk=client.id %}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
+                                <a href="{% url 'clt:client-change' pk=client.id %}" class="client-edit__link">Редактировать</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -43,8 +43,8 @@
                 <ul class="clients">
                     {% for client in potential_clients %}
                             <li class="client">
-                                <p><a href="#!" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
-                                <a href="#!" class="client-edit__link">Редактировать</a>
+                                <p><a href="{% url 'clt:client' pk=client.id %}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
+                                <a href="{% url 'clt:client-change' pk=client.id %}" class="client-edit__link">Редактировать</a>
                             </li>
                     {% endfor %}
                 </ul>
@@ -62,8 +62,8 @@
                 <ul class="clients">
                     {% for client in disabled_clients %}
                             <li class="client">
-                                <p><a href="#!" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
-                                <a href="#!" class="client-edit__link">Редактировать</a>
+                                <p><a href="{% url 'clt:client' pk=client.id %}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
+                                <a href="{% url 'clt:client-change' pk=client.id %}" class="client-edit__link">Редактировать</a>
                             </li>
                     {% endfor %}
                 </ul>

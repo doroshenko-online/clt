@@ -1,14 +1,16 @@
 {% extends "../base_generic.html" %}
 {% load static %}
-{% block title %}<title>Добавить клиента</title>{% endblock %}
+{% block title %}<title>{{ title }}</title>{% endblock %}
 {% block content %}
+
 
 <main class="main-wrapper__white">
     <div class="client-title__block">
-        <h1 class="client-title">Добавить клиента</h1>
+        <h1 class="client-title">{{ title }}</h1>
     </div>
     <form action="" method="post">
         {% csrf_token %}
+        {{ form.errors.name }}
         <div class="info-row ">
             <p class="info-title">Название службы:</p>
             <p class="info-row__input">{{ form.name }}</p>
@@ -35,9 +37,11 @@
         </div>
         {{ ip_list.management_form }}
         {% for form in ip_list.forms %}
+        {{ form.client }}
+        {{ form.id }}
             <div class="info-row">
                 <p class="info-title">IP-port сервера:</p>
-                <p class="info-row__input">IP: {{ form.ip }} Port: {{ form.port }}</p>
+                <p class="info-row__input">IP: {{ form.ip }} &nbsp;&nbsp;Port: {{ form.port }}</p>
                 <p class="info-row__input"><span class="delete-item-form">Удалить:  {{ form.DELETE }}</span></p>
                 <button class="section-add-info" id="add-ip-port__link">Добавить ip-port</button>
             </div>
@@ -117,6 +121,9 @@
         </div>
         {{ client_numbers.management_form }}
         {% for form in client_numbers %}
+        {{ form.errors.number }}
+        {{ form.client }}
+        {{ form.id }}
             <div class="contact-row">
                 <p class="name-number"><span class="name">Имя:</span>{{ form.name }}<span class="number">Номер:</span>{{ form.number }}<span class="hide-span">Скрыть(Не будет отображаться в карточке клиента):</span>{{ form.hide }}</p>
                 <p class="contact-comment"><span class="comment-title">Комментарий:</span>{{ form.comment }}<span class="delete-item-form">Удалить:  {{ form.DELETE }}</span></p>
@@ -129,6 +136,8 @@
         </div>
         {{ client_gateways.management_form }}
         {% for form in client_gateways %}
+        {{ form.client }}
+        {{ form.id }}
             <div class="gateway-row__block">
                     <p class="gateway-row">
                         <span class="gateway-ip">IP: {{ form.ip }}</span>

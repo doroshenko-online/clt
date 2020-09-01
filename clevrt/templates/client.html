@@ -1,109 +1,121 @@
 {% extends "base_generic.html" %}
 {% load static %}
-{% block title %}<title>HOSTNAME</title>{% endblock %}
+{% block title %}<title>{{ client.name }}</title>{% endblock %}
 {% block content %}
 
 <main class="main-wrapper__white">
     <div class="client-title__block">
-        <h1 class="client-title">Client Name (title comment)</h1>
-        <button id="change-client" class="button-st button-blue"><a href="#!" class="button-link">Изменить</a></button>
+        <h1 class="client-title">{{ client.name }} {% if client.title_comment %}({{ client.title_comment }}){% endif %}</h1>
+        <button id="change-client" class="button-st button-blue"><a href="{% url 'clt:client-change' pk=client.id %}" class="button-link">Изменить</a></button>
     </div>
     <div class="info-row">
         <p class="info-title">IP-port сервера:</p>
-        <p class="info-row__text"><span class="ip-port__info">255.255.255.255:22</span><span class="ip-port__info">255.255.255.255:22</span></p>
+        <p class="info-row__text">
+            {% for ip in ip_list %}
+            <span class="ip-port__info">{{ ip.ip }}:{{ ip.port }}</span>
+            {% endfor %}
+        </p>
         <button id="last-activity__ssh" class="last-activity__ssh" title="Подключится к серверу"></button>
         <button class="section-add-info" id="add-ip-port__link">Добавить ip-port</button>
     </div>
     <div class="info-row">
         <p class="info-title">Хостнейм сервера:</p>
-        <p class="info-row__text">hostname</p>
+        <p class="info-row__text">{{ client.hostname }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Локальный IP сервера:</p>
-        <p class="info-row__text">192.168.1.111</p>
+        <p class="info-row__text">{{ client.local_ip }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Информация о роутере:</p>
-        <p class="info-row__text">admin/admin</p>
+        <p class="info-row__text">{{ client.gateway_info }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Офисные IP:</p>
-        <p class="info-row__text"><span class="ip-port__info">255.255.255.255</span><span class="ip-port__info">255.255.255.255</span></p>
+        <p class="info-row__text">{% if client.officeIp1 %}<span class="ip-port__info">{{ client.officeIp1 }}</span>{% endif %}
+            {% if client.officeIp2 %}<span class="ip-port__info">{{ client.officeIp2 }}</span>{% endif %}
+            {% if client.officeIp3 %}<span class="ip-port__info">{{ client.officeIp3 }}</span>{% endif %}
+            {% if client.officeIp4 %}<span class="ip-port__info">{{ client.officeIp4 }}</span>{% endif %}
+        </p>
     </div>
     <div class="info-row">
         <p class="info-title">Дополнительная информация:</p>
-        <p class="info-row__text">С другой стороны выбранный нами инновационный путь требует от нас системного анализа ключевых компонентов планируемого обновления.
-
-            Равным образом новая модель...</p>
+        <p class="info-row__text">{{ client.additional_info }}</p>
     </div>
-    <div class="info-row">
+        <div class="info-row">
         <p class="info-title">Дата подключения:</p>
-        <p class="info-row__text">20.04.2020</p>
+        <p class="info-row__text">{% if client.date_on != None %}{{ client.date_on }}{% endif %}</p>
     </div>
-
+    {% if client.client_status == 'Off' %}
+        <div class="info-row">
+            <p class="info-title">Дата отключения:</p>
+            <p class="info-row__text">{{ client.date_off }}</p>
+        </div>
+    {% endif %}
     <div class="section-title__block">
         <h2 class="section-title">ИНФОРМАЦИЯ О СЕРВЕРЕ</h2>
     </div>
     <div class="info-row">
         <p class="info-title">Наша VPS:</p>
-        <p class="info-row__text">Да</p>
+        {% if client.vps_own %}
+            <p class="info-row__text">Да</p>
+        {% else %}
+            <p class="info-row__text">Нет</p>
+        {% endif %}
     </div>
     <div class="info-row">
         <p class="info-title">Версия OS:</p>
-        <p class="info-row__text">Ubuntu 14.04</p>
+        <p class="info-row__text">{{ client.os_version }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Версия Asterisk:</p>
-        <p class="info-row__text">Версия Asterisk:</p>
+        <p class="info-row__text">{{ client.ast_version }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Версия CCS:</p>
-        <p class="info-row__text">3.4</p>
+        <p class="info-row__text">{{ client.ccs_version }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Логин CCS:</p>
-        <p class="info-row__text">test-login</p>
+        <p class="info-row__text">{{ client.login_ccs }}</p>
     </div>
     <div class="info-row">
         <p class="info-title">Пароль CCS:</p>
-        <p class="info-row__text">sdfsdf2312s</p>
+        <p class="info-row__text">{{ client.secret_ccs }}</p>
+    </div>
+    <div class="info-row">
+        <p class="info-title">Максимальная версия C-Phone:</p>
+        <p class="info-row__text">{{ client.cphone_maxvers }}</p>
     </div>
 
     <div class="section-title__block">
         <h2 class="section-title">КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
         <button class="section-add-info" id="add-number__link">Добавить номер</button>
     </div>
-    <div class="contact-row">
-        <p class="name-number"><span class="name">Имя:</span>Константин<span class="number">Номер:</span>380665715711</p>
-        <p class="contact-comment"><span class="comment-title">Комментарий:</span>С другой стороны выбранный нами инновационный путь требует от нас системного анализа ключевых компонентов планируемого обновления.</p>
-    </div>
-    <div class="contact-row">
-        <p class="name-number"><span class="name">Имя:</span>Константин<span class="number">Номер:</span>380665715711</p>
-        <p class="contact-comment"><span class="comment-title">Комментарий:</span>С другой стороны выбранный нами инновационный путь требует от нас системного анализа ключевых компонентов планируемого обновления.</p>
-    </div>
+    {% for number in numbers %}
+        {% if number.hide == False %}
+            <div class="contact-row">
+                <p class="name-number"><span class="name">Имя:</span>{{ number.name }}<span class="number">Номер:</span>{{ number.number }}</p>
+                <p class="contact-comment"><span class="comment-title">Комментарий:</span>{{ number.comment }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
 
     <div class="section-title__block">
         <h2 class="section-title">ШЛЮЗЫ</h2>
         <button class="section-add-info" id="add-gateway__link">Добавить шлюз</button>
     </div>
-    <div class="gateway-row__block">
-        <p class="gateway-row">
-            <span class="gateway-ip">IP: 192.168.122.254</span>
-            <span class="gateway-port">Port: 80</span>
-            <span class="gatewa-login">Логин: admin</span>
-            <span class="gatewa-password">Пароль: sjj23FF123123kjlkjjd3</span>
-            <span class="gateway-vendor">Вендор оборудования: GoIp</span>
-        </p>
-    </div>
-    <div class="gateway-row__block">
-        <p class="gateway-row">
-            <span class="gateway-ip">IP: 192.168.122.254</span>
-            <span class="gateway-port">Port: 80</span>
-            <span class="gateway-login">Логин: admin</span>
-            <span class="gateway-password">Пароль: sjj23FF123123kjlkjjd3</span>
-            <span class="gateway-vendor">Вендор оборудования: GoIp</span>
-        </p>
-    </div>
+    {% for gateway in gateways %}
+        <div class="gateway-row__block">
+            <p class="gateway-row">
+                <span class="gateway-ip">IP: {{ gateway.ip }}</span>
+                <span class="gateway-port">Port: {{ gateway.port }}</span>
+                <span class="gatewa-login">Логин: {{ gateway.login }}</span>
+                <span class="gatewa-password">Пароль: {{ gateway.secret }}</span>
+                <span class="gateway-vendor">Вендор оборудования: {{ gateway.type_gateway }}</span>
+            </p>
+        </div>
+    {% endfor %}
 </main>
 
 {% endblock %}

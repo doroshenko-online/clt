@@ -3,28 +3,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Test_Model(models.Model):
-    name = models.CharField(max_length=15, unique=True, null=True)
-    title = models.CharField(max_length=50)
-    comment = models.CharField(max_length=50, blank=True)
-
-    def __str__(self):
-        return self.name
-
-class Test_Child(models.Model):
-    parent = models.ForeignKey(Test_Model, on_delete=models.CASCADE)
-    info = models.CharField(max_length=50)
-    date = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return self.info
-
-class Test_C(models.Model):
-    parent = models.ForeignKey(Test_Model, on_delete=models.CASCADE)
-    sative = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.sative
 
 class Country(models.Model):
     country = models.CharField(max_length=100, verbose_name='страна', unique=True, error_messages={'unique': 'Такая страна уже существует'})
@@ -105,7 +83,7 @@ class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
     number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона')
-    comment = models.TextField(max_length=100, blank=True, verbose_name='комментарий')
+    comment = models.CharField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')
 
