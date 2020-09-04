@@ -56,7 +56,7 @@ class ClientCreate(LoginRequiredMixin, CreateView):
         return super(ClientCreate, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('clt:client', kwargs={'pk': self.object.pk})
+        return reverse_lazy(self.object.get_absolute_url())
 
 
 class ClientUpdate(LoginRequiredMixin, UpdateView):
@@ -100,11 +100,12 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
         return super(ClientUpdate, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('clt:client', kwargs={'pk': self.object.pk})
+        return reverse_lazy('clt:client', kwargs={'name': self.object.name})
 
 
 class Clients(LoginRequiredMixin, ListView):
     model = Client
+    template_name = 'clt/client_list.html'
 
     def get_context_data(self, **kwargs):
         data = {'active_clients': self.model.objects.filter(client_status='On').order_by('name'),
@@ -120,14 +121,14 @@ class Clients(LoginRequiredMixin, ListView):
 
 class ClientView(LoginRequiredMixin, View):
     model = Client
-    template_name = 'client.html'
+    template_name = 'clt/client.html'
 
-    def get(self, request, pk):
-        client_info = get_object_or_404(self.model, pk=pk)
+    def get(self, request, name):
+        client_info = get_object_or_404(self.model, name=name)
         gateways = Client_Gateway.objects.filter(client=client_info.pk)
         numbers = Client_Number.objects.filter(client=client_info.pk)
         ip_list = Ip_List.objects.filter(client=client_info.pk)
-        self.model.objects.filter(pk=pk).update(last_activity=datetime.now())
+        self.model.objects.filter(name=name).update(last_activity=datetime.now())
 
         return render(request, self.template_name, {'client': client_info, 'gateways': gateways, 'numbers': numbers, 'ip_list': ip_list})
 

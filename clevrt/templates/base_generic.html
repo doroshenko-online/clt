@@ -12,13 +12,13 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'clt/img/png/logo-fav.png' %}" />
 </head>
 <body>
-    {% include "header.html" %}
+    {% include "inc/header.html" %}
     {% block header %}{% endblock %}
-        {% include 'settings-panel.html' %}
+        {% include 'inc/settings-panel.html' %}
         {% block settings %}{% endblock %}
     {% block content %}
     {% endblock %}
-    {% include "footer.html" %}
+    {% include "inc/footer.html" %}
     {% block footer %}{% endblock %} 
 </body>
 </html>

@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 
 # Create your models here.
-
-
 class Country(models.Model):
     country = models.CharField(max_length=100, verbose_name='страна', unique=True, error_messages={'unique': 'Такая страна уже существует'})
 
@@ -63,6 +62,9 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
+
+    def get_absolute_url(self):
+        return reverse('clt:client', kwargs={'name': self.name})
 
     def __str__(self):
         return self.name
