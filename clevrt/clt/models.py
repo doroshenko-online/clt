@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+from django.urls import reverse_lazy
 
 # Create your models here.
 class Country(models.Model):
@@ -33,7 +34,7 @@ class Client(models.Model):
         (OFF, 'Отключенный'),
         (POT, 'Потенциальный'),
     ]
-    name = models.CharField(max_length=100, unique=True, verbose_name='название службы', error_messages={'unique': 'Такой клиент уже существует'})
+    name = models.CharField(max_length=100, unique=True, verbose_name='название службы', error_messages={'unique': 'Клиент с таким названием уже существует'}, db_index=True)
     country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, verbose_name='страна')
     city = models.ForeignKey(City, on_delete=models.DO_NOTHING, verbose_name='город')
     hostname = models.CharField(max_length=100, blank=True, default='', verbose_name='хостнейм сервера')
@@ -64,7 +65,7 @@ class Client(models.Model):
         verbose_name_plural = 'Клиенты'
 
     def get_absolute_url(self):
-        return reverse('clt:client', kwargs={'name': self.name})
+        return reverse_lazy('clt:client', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name
@@ -72,11 +73,13 @@ class Client(models.Model):
 class Ip_List(models.Model):
     ip = models.CharField(max_length=16, null=True, blank=True, verbose_name='ip')
     port = models.CharField(max_length=6, null=True, blank=True, default='22', verbose_name='port')
+    date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
 
     class Meta:
         verbose_name = 'IP-адрес'
         verbose_name_plural = 'IP-адреса'
+        ordering = ['-date_add']
 
     def __str__(self):
         return self.client.name
@@ -84,7 +87,7 @@ class Ip_List(models.Model):
 class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
-    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона')
+    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона', db_index=True)
     comment = models.CharField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')

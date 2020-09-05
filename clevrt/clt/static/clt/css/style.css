@@ -104,7 +104,7 @@ p {
     font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 17px;
     text-align: center;
     color: #000000;
@@ -124,9 +124,9 @@ button{
     transition: 0.25s;
 }
 
-    button:hover, button:active, button:active{
+    /* button:hover, button:active, button:active{
         transform: scale(0.95);
-    }
+    } */
 
 input{
     vertical-align: middle;
@@ -192,6 +192,11 @@ section{
     height: 100%;
     padding: 10px;
 }
+
+    .button-link:hover, .button-link:active, .button-link:focus{
+        text-decoration: none;
+    }
+
 /* header styles start */
 
 .header {
@@ -267,7 +272,15 @@ section{
     height: 60px;
     vertical-align: middle;
     align-items: center;
+    transition: 0.15s all;
 }
+
+    .button:hover, .button:active, .button:active{
+        transform: scale(0.95);
+        background-color: #26789a;
+        text-decoration: none;
+    }
+
 
 .btn-link {
     display: inline-block;
@@ -285,8 +298,9 @@ section{
 }
 
     .btn-link:hover, .btn-link:focus, .btn-link:active {
-        background-color: #26789a;
-        transition: 0.15s all;
+        /* background-color: #26789a;
+        transition: 0.15s all; */
+        text-decoration: none;
     }
 
 #setting-btn {
@@ -437,6 +451,7 @@ section{
 
 .container{
     width: 100%;
+    max-width: 1920px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -445,6 +460,7 @@ section{
 
 .last-activity{
     max-width: 325px;
+    border-radius: .25rem;
 }
 
 .reminders{
@@ -452,7 +468,7 @@ section{
 }
 
 .addition-info{
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .title-block{
@@ -461,7 +477,8 @@ section{
     align-items: center;
     background-color: #35A0CC;
     padding: 8px 16px;
-    margin-bottom: 20px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
 }
 
 .add-reminder{
@@ -480,8 +497,12 @@ section{
     align-items: center;
     background-color: #35A0CC;
     padding: 8px 16px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
+
+    .addition-info__title-block:first-child{
+        margin-top: 0;
+    }
 
 .addition-info__title{
     color: #fff;
@@ -495,6 +516,11 @@ section{
     border-bottom: 0.5px solid #C6C4C4;
     padding: 15px;
 }
+
+    .last-activity__item:last-child{
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
 
 .last-activity__ssh{
     width: 30px;
@@ -512,13 +538,18 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
     background-color: #fff;
     transition: 1s;
+    border-bottom: 0.5px solid #C6C4C4;
 }
 
     .reminder-block:hover{
         transform: scale(1.05);
+    }
+
+    .reminder-block:last-child{
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
     }
 
 .new-reminder{
@@ -547,6 +578,7 @@ section{
     font-size: 14px;
     line-height: 17px;
     padding: 3px 10px;
+    padding-top: 10px;
     text-align: center;
     vertical-align: middle;
     margin: 0 10px;
@@ -561,14 +593,14 @@ section{
 }
 
 .addition-info__info-row{
-    max-width: 200px;
+    max-width: 350px;
     box-sizing: border-box;
     text-align: left;
-    max-height: 17px;
+    max-height: 22px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 13px;
-    line-height: 17px;
+    font-size: 15px;
+    line-height: 22px;
 }
 
 .addition-info__hostname{
@@ -601,6 +633,14 @@ section{
 
 /*clients page styles start*/
 
+/* .card-header{
+    background-color: #35A0CC;
+} */
+
+.card-header__clients-list{
+    background-color: #35A0CC;
+}
+
 .active-clients, .potential-disabled{
     width: 35%;
 }
@@ -618,35 +658,36 @@ section{
     line-height: 17px;
 }
 
-.coutry-title{
+.country-title{
     margin: 0;
+    border-top: 0.5px solid #EBEBEB;
 }
 
 .client{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 7px 20px;
+    padding: 10px 20px;
     border-bottom:  0.5px solid #EBEBEB;
     align-items: center;
 }
 
 .client p{
     font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
+    font-size: 14px;
+    line-height: 17px;
 }
 
 .client-link{
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .client-edit__link{
     text-align: center;
     font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 12px;
+    line-height: 14px;
     color: #35A0CC;
     padding-left: 20px;
     background: url('../img/png/pencil.png') no-repeat left;
@@ -712,7 +753,7 @@ section{
 
 .info-row__input{
     display: block;
-    padding: 10px 0;
+    padding: 5px 0;
     margin-right: 30px;
 }
 

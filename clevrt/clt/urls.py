@@ -31,5 +31,8 @@ urlpatterns = [
     path('clients/', views.Clients.as_view(), name='clients'),
     path('client/add/', views.ClientCreate.as_view(), name='client-add'),
     path('client/change/<int:pk>', views.ClientUpdate.as_view(), name='client-change'),
-    path('client/<str:name>', views.ClientView.as_view(), name='client'),
-] + static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static"))
+    path('client/<int:pk>', views.ClientView.as_view(), name='client'),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static"))

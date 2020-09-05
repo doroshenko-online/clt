@@ -82,6 +82,10 @@
             <p class="info-title">Дата отключения:</p>
             <p class="info-row__input">{{ form.date_off }}</p>
         </div>
+        <div class="info-row">
+            <p class="info-title">Скрыть (клиент не отображается в списке):</p>
+            <p class="info-row__input">{{ form.hide }}</p>
+        </div>
 
         <div class="section-title__block">
             <h2 class="section-title">ИНФОРМАЦИЯ О СЕРВЕРЕ</h2>
@@ -126,7 +130,7 @@
         {{ form.id }}
             <div class="contact-row">
                 <p class="name-number"><span class="name">Имя:</span>{{ form.name }}<span class="number">Номер:</span>{{ form.number }}<span class="hide-span">Скрыть(Не будет отображаться в карточке клиента):</span>{{ form.hide }}</p>
-                <p class="contact-comment"><span class="comment-title">Комментарий:</span>{{ form.comment }}<span class="delete-item-form">Удалить:  {{ form.DELETE }}</span></p>
+                <p class="contact-comment"><span class="comment-title">Комментарий:</span>{{ form.comment }}&nbsp;&nbsp;<span class="delete-item-form">Удалить:  {{ form.DELETE }}</span></p>
             </div>
         {% endfor %}
 
