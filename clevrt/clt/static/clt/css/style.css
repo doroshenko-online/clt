@@ -725,7 +725,7 @@ section{
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 25px;
+    padding: 5px 25px;
     border-top: 1px solid #EEE;
 }
 
@@ -734,7 +734,7 @@ section{
 }
 
 .info-title{
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
@@ -751,11 +751,11 @@ section{
     margin-right: 30px;
 }
 
-.info-row__input{
+/* .info-row__input{
     display: block;
     padding: 5px 0;
     margin-right: 30px;
-}
+} */
 
 .info-row__input input, .info-row__input span input, .info-row__input textarea, .contact-row p input, .gateway-row span input, .contact-comment textarea{
     font-family: Roboto;
@@ -766,14 +766,14 @@ section{
     color: #000000;
     border: 1px solid #d4d4d4;
     padding: 5px 10px;
-    border-radius: 21px;
+    border-radius: 7px;
     transition: 0.15s all;
     margin: 15px 0 15px 0;
 }
-
+/*
     .info-row__input input:focus, .info-row__input span input:focus, .info-row__input textarea:focus, .contact-row p input:focus, .gateway-row span input:focus, .contact-comment textarea:focus{
         border: 1px solid #000;
-    }
+    } */
 
 .ip-port__info{
     font-family: Roboto;
@@ -834,7 +834,7 @@ section{
 
 .name-number, .contact-comment{
     text-align: left;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
