@@ -72,6 +72,7 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
             data['client_numbers'] = Client_NumberFormSet(self.request.POST, instance=self.object)
             data['client_gateways'] = Client_GatewayFormSet(self.request.POST, instance=self.object)
         else:
+            data['client'] = self.model.objects.get(pk=self.object.pk)
             data['title'] = "Изменить клиента"
             data['ip_list'] = Ip_ListFormSet(instance=self.object)
             data['client_numbers'] = Client_NumberFormSet(instance=self.object)

@@ -144,6 +144,8 @@ textarea{
 
 section{
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .hide{
@@ -159,7 +161,6 @@ section{
 .button-st{
     width: 150px;
     min-height: 50px;
-    display: flex;
     padding: 5px 8px;
     border-radius: 4px;
     border: 0;
@@ -398,7 +399,7 @@ section{
     background: #DE7A1D;
     text-decoration: none;
     padding-top: 13px;
-    border-radius: 41px;
+    border-radius: 10px;
     color: #FFFFFF;
     border: 0;
     transition: 0.4s all;
@@ -420,7 +421,7 @@ section{
     text-decoration: none;
     padding-top: 13px;
     background: #E91212;
-    border-radius: 41px;
+    border-radius: 10px;
     color: #FFFFFF;
     border: 0;
     transition: 0.4s all;
@@ -872,3 +873,29 @@ section{
 .contact-comment textarea{
     margin-right: 30px;
 }
+
+.client-form__buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.client-form__cancel{
+    display: block;
+    width: 150px;
+    min-height: 40px;
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 0;
+    text-align: center;
+    padding-top: 13px;
+    align-items: center;
+    color: #fff;
+    margin: 20px 0;
+    background-color: #C6C4C4;
+}
+
+    .client-form__cancel{
+        text-decoration: none;
+    }

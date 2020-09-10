@@ -153,8 +153,12 @@
                     </p>
             </div>
         {% endfor %}
-
-        <button type="submit" id="save-client" class="button-st button-blue">Сохранить клиента</button>
+        <div class="client-form__buttons">
+            <button type="submit" id="save-client" class="button-st button-blue">Сохранить клиента</button>
+            {% if client %}
+                <a href="{{ client.get_absolute_url }}" class="client-form__cancel">Отменить</a>
+            {% endif %}
+        </div>
 
     </form>
 </main>
