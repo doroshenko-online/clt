@@ -19,6 +19,12 @@ class Index(View):
         return render(request, template_name=self.template_name)
 
 
+class Test(View):
+    template_name = 'clt/testjs.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
 class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
