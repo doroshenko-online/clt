@@ -1,0 +1,7 @@
+<div id="dialog">
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Страна:{{ country_form.country }}</p>
+        <input type="submit" value="Сохранить">
+    </form>
+</div>
