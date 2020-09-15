@@ -1,9 +1,13 @@
 {% extends "../base_generic.html" %}
 {% load static %}
 {% block title %}<title>Клиенты</title>{% endblock %}
+
 {% block content %}
 
 <main class="main-wrapper__white">
+    {% comment %}
+    {% include 'clt/country-dialog.html' %}
+    {% endcomment %}
     <div class="container">
 
         <!--section active clients start-->
