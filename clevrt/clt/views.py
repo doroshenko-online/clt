@@ -117,11 +117,26 @@ class Clients(LoginRequiredMixin, ListView):
                 'potential_clients': self.model.objects.filter(client_status='Pot', hide=False).order_by('name'),
                 'disabled_clients': self.model.objects.filter(client_status='Off', hide=False).order_by('name'),
                 'cities': City.objects.all().order_by('city'),
-                'countries': Country.objects.all().order_by('country')}
+                'countries': Country.objects.all().order_by('country'),
+                'country_form': CountryForm(),
+                'city_form': CityForm()}
         if self.request.method == 'GET':
             return data
 
 
+        if self.request.method == 'POST':
+            country = CountryForm(self.request.POST)
+            city = CityForm(self.request.POST)
+
+            if country:
+                if country.is_valid():
+                    country.save()
+                    return reverse('clt:clients')
+
+            if city:
+                if city.is_valid():
+                    city.save()
+                    return reverse('clt:clients')
 
 
 class ClientView(LoginRequiredMixin, View):
