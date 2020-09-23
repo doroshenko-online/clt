@@ -1,16 +1,65 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test JavaScripts</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'clt/img/png/logo-fav.png' %}" />
 </head>
-<body>  
-    
-</body>
-</html>
+<style>
+    #user-template {
+        display: none;
+    }
+</style>
 
+<body style="height: 1000px;">
+    <!-- lesson_5_7 -->
+    <!-- <h1>Users</h1>
+    <div id="user-template">
+        <p><strong>Name:</strong> <span class="name"></span></p>
+        <p><strong>Age:</strong> <span class="age"></span></p>
+        <p><strong>Single:</strong> <span class="single"></span></p>
+        <hr>
+    </div> -->
+
+    <!-- lesson_6_2 -->
+    <!-- <button onclick="handlerButton(this)">Check 1</button>
+    <button id="button2">Check 2</button>
+    <button id="button3">Check 3</button> -->
+
+    <!-- lesson_6_3
+    <a href="http://1.ru">Link</a>
+    <a href="http://2.ru">Link</a>
+    <a href="http://3.ru">Link</a>
+    <a onclick="return myClick();" href="http://4.ru">Link</a> -->
+
+    <!-- lesson_6_4
+    <div style="text-align: center; border: 1px solid #000;"><h1>Our object</h1></div> -->
+
+    <!-- lesson_6_5 -->
+    <!-- <input type="text" name="firstname">
+    <div tabindex="0"></div> -->
+
+    <!-- lesson_6_6
+    <form name="myform" action="#" method="GET">
+        <p id="error" style="color: red; display: none;"></p>
+        <div>
+            <label>Name:</label> <input type="text" name="name">
+        </div>
+        <div>
+            <label>Accept rules:</label> <input type="checkbox" name="rules" value="1">
+        </div>
+        <div>
+            <input type="submit" name="sbutton" value="Send">
+        </div>
+    </form> -->
+    <!-- {%csrf_token%} -->
+    
+
+</body>
+
+</html>
 <script src="{% static 'clt/js/testjs/testjs.js' %}"></script>

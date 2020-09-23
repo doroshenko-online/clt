@@ -12,6 +12,10 @@ from .forms import *
 from django.urls import reverse_lazy
 from django.db import transaction
 import re
+from django.http import JsonResponse
+from django.core import serializers
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 class Index(View):
     template_name = 'clt/index.html'
@@ -24,6 +28,41 @@ class Test(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
+    def post(self, request):
+        return HttpResponse('123')
+
+class Test2(View):
+    template_name = 'clt/testjs.html'
+    #@csrf_exempt #отключает запрос csrf
+    def get(self, request):
+        print(request)
+        arr = {
+            'name': 'Alex',
+            'age': 32,
+            'job': 'programmer',
+            'single': True
+        }
+        # return HttpResponse('123 - get')
+        return JsonResponse(arr, safe=False)
+
+    #@csrf_exempt #отключает запрос csrf
+    def post(self, request):
+        data_js = json.loads(request.body)
+        print(request.headers)
+        print(data_js)
+        print(type(data_js))
+        print(data_js['x'] ** 2)
+        # arr = {
+        #     'name': 'Alex',
+        #     'age': 32,
+        #     'job': 'programmer',
+        #     'single': True
+        # }
+        # data = serializers.serialize('json', arr)
+        # return HttpResponse(data)
+        #return JsonResponse(data_js, safe=True)
+        return HttpResponse('123')
 
 class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
