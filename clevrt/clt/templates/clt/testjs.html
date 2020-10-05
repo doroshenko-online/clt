@@ -10,8 +10,20 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'clt/img/png/logo-fav.png' %}" />
 </head>
 <style>
-    #user-template {
-        display: none;
+    .red {
+       color: red;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .messages {
+        cursor: pointer;
     }
 </style>
 
@@ -58,8 +70,45 @@
     </form> -->
     <!-- {%csrf_token%} -->
     
+    <!-- lesson_8_3
+    <img src="" alt="">
+    <form name="myform" action="">
+        <input type="file" name="image">
+    </form> -->
 
+    <!-- lesson_8_4
+    <form action="" name="myform">
+        <label for="x">X:</label> <input type="text" name="x" id="x"> <br>
+        <label for="x">Y:</label> <input type="text" name="y" id="y"> <br><br>
+        <input type="submit" name="sbutton" value="Send">
+        <p id="response"></p>
+    </form> -->
+
+    <!-- lesson_8_5
+    <div id="courses">
+        <h2>Курсы акций XYZ</h2>        
+    </div> -->
+
+    <!-- jQuery_3-9 -->
+    <!-- <div id="test"></div>
+    <div id="main">
+        <h2>Message</h2>
+        <p class="messages" data-id="1">msg1</p>
+        <p class="messages" data-id="2">msg2</p>
+        <p class="messages" data-id="3">msg3</p>
+        <p class="messages" data-id="4">msg4</p>
+        <p class="messages" data-id="5">msg5</p>
+    </div>
+    <button>Animation</button> -->
+
+    <form name="form" action="#" method="POST">
+        <label for="">X:</label> <input type="text" name="x">
+        <label for="">Y:</label> <input type="text" name="y">
+        <input type="submit" name="form" value="Посчитать сумму">
+    </form>    
+    <div id="result"></div>
 </body>
 
 </html>
+<script src="{% static 'clt/js/jquery-3.5.1.min.js' %}"></script>
 <script src="{% static 'clt/js/testjs/testjs.js' %}"></script>

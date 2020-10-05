@@ -29,12 +29,14 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('tasks/', include('tasks.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('clients/', views.Clients.as_view(), name='clients'),
-    path('test/', views.Test.as_view(), name='test'),
-    path('test2/', csrf_exempt(views.Test2.as_view()), name='test2'),
+    path('clients/', csrf_exempt(views.Clients.as_view()), name='clients'),
     path('client/add/', views.ClientCreate.as_view(), name='client-add'),
     path('client/change/<int:pk>', views.ClientUpdate.as_view(), name='client-change'),
     path('client/<int:pk>', views.ClientView.as_view(), name='client'),
+
+    #ajax requests
+    path('client/ajax/', csrf_exempt(views.Clt_Info.as_view()), name='ajax-info'),
+    path('clt/ssh-info/', csrf_exempt(views.Clt_SSHInfo.as_view()), name='ssh-info'),
 ]
 
 if settings.DEBUG:

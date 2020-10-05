@@ -34,19 +34,19 @@ class Client(models.Model):
         (OFF, 'Отключенный'),
         (POT, 'Потенциальный'),
     ]
-    name = models.CharField(max_length=100, unique=True, verbose_name='название службы', error_messages={'unique': 'Клиент с таким названием уже существует'}, db_index=True)
-    country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, verbose_name='страна')
-    city = models.ForeignKey(City, on_delete=models.DO_NOTHING, verbose_name='город')
+    name = models.CharField(max_length=100, unique=True, verbose_name='название службы*', error_messages={'unique': 'Клиент с таким названием уже существует'}, db_index=True)
+    country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, verbose_name='страна*')
+    city = models.ForeignKey(City, on_delete=models.DO_NOTHING, verbose_name='город*')
     hostname = models.CharField(max_length=100, blank=True, default='', verbose_name='хостнейм сервера')
     gateway_info = models.CharField(max_length=250, default='', blank=True, verbose_name='информация о роутере')
     local_ip = models.CharField(max_length=40, blank=True, default='', verbose_name='локальный ip сервера')
-    title_comment = models.CharField(max_length=50, blank=True, default='', verbose_name='комментарий клиента(виден в списке клиентов)')
+    title_comment = models.CharField(max_length=50, blank=True, default='', verbose_name='комментарий клиента')
     officeIp1 = models.CharField(max_length=16, blank=True, verbose_name='офисный IP1')
     officeIp2 = models.CharField(max_length=16, blank=True, verbose_name='офисный IP2')
     officeIp3 = models.CharField(max_length=16, blank=True, verbose_name='офисный IP3')
     officeIp4 = models.CharField(max_length=16, blank=True, verbose_name='офисный IP4')
     client_status = models.CharField(max_length=3, choices=CLIENT_STATUS, default=POT, verbose_name='статус клиента')
-    os_version = models.CharField(max_length=10, blank=True, default='', verbose_name='версия ос')
+    os_version = models.CharField(max_length=50, blank=True, default='', verbose_name='версия ос')
     ast_version = models.CharField(max_length=10, blank=True, default='', verbose_name='версия астериска')
     login_ccs = models.CharField(max_length=20, blank=True, default='', verbose_name='логин')
     secret_ccs = models.CharField(max_length=100, blank=True, default='', verbose_name='пароль')
@@ -87,7 +87,7 @@ class Ip_List(models.Model):
 class Client_Number(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='клиент')
     name = models.CharField(max_length=50, verbose_name='имя')
-    number = models.CharField(max_length=15, unique=True, verbose_name='номер телефона', db_index=True)
+    number = models.CharField(max_length=12, unique=True, verbose_name='номер телефона', db_index=True)
     comment = models.CharField(max_length=100, blank=True, verbose_name='комментарий')
     hide = models.BooleanField(default=False, verbose_name='скрыт')
     add_date = models.DateField(auto_now_add=True, verbose_name='дата добавления номера')
@@ -135,6 +135,7 @@ class Columns(models.Model):
 
 class Log(models.Model):
     username = models.ForeignKey(User, max_length=20, on_delete=models.DO_NOTHING, verbose_name='пользователь')
+    title = models.CharField(max_length=100, blank=True, verbose_name='заголовок')
     pub_date = models.DateField(verbose_name='дата публикации')
 
     class Meta:
@@ -147,7 +148,6 @@ class Log(models.Model):
 
 class Log_String(models.Model):
     log = models.ForeignKey(Log, on_delete=models.CASCADE, verbose_name='лог')
-    username = models.ForeignKey(User, max_length=20, on_delete=models.DO_NOTHING, verbose_name='пользователь')
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, verbose_name='клиент')
     info = models.TextField(max_length=1000, verbose_name='информация')
 
@@ -189,3 +189,17 @@ class Office_Simcard(models.Model):
     def __str__(self):
         text = str(self.channel_name)+"("+str(self.sim_number)+") - "+str(self.client)
         return text
+
+class Reminder(models.Model):
+    created_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='создатель', related_name='creator')
+    users = models.ManyToManyField(User, blank=True, verbose_name='просмотревшие', related_name='viewers')
+    text = models.TextField(max_length=500, verbose_name='напоминание')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
+
+    class Meta:
+        verbose_name = 'напоминание'
+        verbose_name_plural = 'напоминания'
+        ordering = ['-created_at']
+
+    def __str(self):
+        return self.text

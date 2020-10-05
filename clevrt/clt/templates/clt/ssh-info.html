@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}<title>{{title}}</title>{% endblock %}
+{% block content %}
+
+<main class="main-wrapper">
+    <div class="container ssh-info__container">
+        <h1 class="ssh-info__title">{{title}}</h1>
+        <h2 class="ssh-info__title">CONNECT TO {{ip}}</h2>
+        <table class="localhost-data">
+            <tr class="localhost-data__title-row">
+                <td class="localhost-data__title-cell">Tunnel</td>
+                <td class="localhost-data__title-cell">Source IP</td>
+            </tr>
+            <tr class="localhost-data__data-row">
+                <td class="localhost-data__data-cell"><a class="ssh-info__link"
+                        href="{{localhost_link}}" target="blank">{{localhost_link}}</a></td>
+                <td class="localhost-data__data-cell">127.0.0.1</td>
+            </tr>
+            <tr class="localhost-data__data-row">
+                <td class="localhost-data__data-cell"><a class="ssh-info__link"
+                        href="{{localhost_link_root}}" target="blank">{{localhost_link_root}}</a></td>
+                <td class="localhost-data__data-cell">127.0.0.1</td>
+            </tr>
+        </table>
+
+        <table class="gateways-data">
+            <tr class="gateways-data__title-row">
+                <td class="gateways-data__title-cell">Название</td>
+                <td class="gateways-data__title-cell">Source IP</td>
+                <td class="gateways-data__title-cell">Логин</td>
+                <td class="gateways-data__title-cell">Пароль</td>
+                <td class="gateways-data__title-cell">Tunnel</td>
+            </tr>
+            {% for gateway in gateways %}
+            <tr class="gateways-data__data-row">
+                <td class="gateways-data__data-cell">{{gateway.type}}</td>
+                <td class="gateways-data__data-cell">{{gateway.ip}}</td>
+                <td class="gateways-data__data-cell">{{gateway.login}}</td>
+                <td class="gateways-data__data-cell">{{gateway.secret}}</td>
+                <td class="gateways-data__data-cell"><a class="ssh-info__link"
+                        href="{{gateway.link}}" target="blank">{{gateway.link}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %}

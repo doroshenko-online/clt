@@ -3,10 +3,10 @@
 {% block title %}<title>{{ client.name }}</title>{% endblock %}
 {% block content %}
 
-<main class="main-wrapper__white">
+<main class="main-wrapper">
     <div class="client-title__block">
         <h1 class="client-title">{{ client.name }} {% if client.title_comment %}({{ client.title_comment }}){% endif %}</h1>
-        <button id="change-client" class="button-st button-blue"><a href="{% url 'clt:client-change' pk=client.id %}" class="button-link">Изменить</a></button>
+        <a id="change-client" href="{% url 'clt:client-change' pk=client.id %}" class="button-link button-st button-blue">Изменить</a>
     </div>
     <div class="info-row">
         <p class="info-title">IP-port сервера:</p>
@@ -15,7 +15,12 @@
             <span class="ip-port__info">{{ ip.ip }}:{{ ip.port }}</span>
             {% endfor %}
         </p>
-        <button id="last-activity__ssh" class="last-activity__ssh" title="Подключится к серверу"></button>
+        <!-- popup ssh -->
+        <div class="popup-ssh">
+            <p class="error-form-message"></p>
+        </div>
+        <!-- popup ssh end -->
+        <button id="last-activity__ssh" data-id="{{ client.id }}" class="last-activity__ssh" title="Подключится к серверу"></button>
         <button class="section-add-info" id="add-ip-port__link">Добавить ip-port</button>
     </div>
     <div class="info-row">

@@ -1,15 +1,19 @@
 {% extends "../base_generic.html" %}
 {% load static %}
+{% load clt_tags %}
 {% block title %}<title>Клиенты</title>{% endblock %}
 
 {% block content %}
-
-<main class="main-wrapper__white">
+<main class="main-wrapper">
     {% comment %}
     {% include 'clt/country-dialog.html' %}
     {% endcomment %}
-    <div class="container">
 
+    {% popup_form 'City' 'city' %}
+    {% popup_form 'Country' 'country' %}
+    {% popup_form 'Client_Number' 'number' %}
+
+    <div class="container">
         <!--section active clients start-->
 
         <section class="active-clients">
@@ -21,15 +25,19 @@
                     <h3 class="addition-info__title">{{ country }}</h3>
                 </div>
                 {% for city in cities %}
+                    {% if city.country == country %}
                     <p class="city-title">{{ city }}</p>
                     <ul class="clients">
                         {% for client in active_clients %}
+                        {% if client.city == city %}
                             <li class="client">
                                 <p><a href="{{ client.get_absolute_url }}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
                                 <a href="{% url 'clt:client-change' pk=client.id %}" class="client-edit__link">Редактировать</a>
                             </li>
+                        {% endif %}
                         {% endfor %}
                     </ul>
+                    {% endif %}
                 {% endfor %}
             {% endfor %}
 
@@ -40,38 +48,13 @@
         <!--section potential clients start-->
         <section class="potential-disabled">
 
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header__clients-list" id="headingOne">
-                    <div class="mb-0">
-                      <button class="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <div class="title-block">
-                            <h2 class="title">потенциальные клиенты</h2>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
 
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <ul class="clients">
-                            {% for client in potential_clients %}
-                                    <li class="client">
-                                        <p><a href="{{ client.get_absolute_url }}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
-                                        <a href="{% url 'clt:client-change' pk=client.id %}" class="client-edit__link">Редактировать</a>
-                                    </li>
-                            {% endfor %}
-                        </ul>                    
-                    </div>
-                  </div>
-                </div>
-
-            <!-- <div class="potential-clients">
+            <div class="potential-clients">
                 <div class="title-block">
-                    <h2 class="title">потенциальные клиенты</h2>
+                    <h2 class="title collapse" data-target="collapse1">потенциальные клиенты</h2>
                 </div>
 
-                <ul class="clients">
+                <ul class="clients" data-id="collapse1">
                     {% for client in potential_clients %}
                             <li class="client">
                                 <p><a href="{{ client.get_absolute_url }}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
@@ -79,44 +62,18 @@
                             </li>
                     {% endfor %}
                 </ul>
-            </div> -->
+            </div>
 
             <!--section potential clients end-->
 
             <!--section disabled clients start-->
 
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header__clients-list" id="headingTwo">
-                    <div class="mb-0">
-                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <div class="title-block">
-                            <h2 class="title">отключенные клиенты</h2>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <ul class="clients">
-                            {% for client in disabled_clients %}
-                                    <li class="client">
-                                        <p><a href="{{ client.get_absolute_url }}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
-                                        <a href="{% url 'clt:client-change' pk=client.id %}" class="client-edit__link">Редактировать</a>
-                                    </li>
-                            {% endfor %}
-                        </ul>                 
-                    </div>
-                  </div>
-                </div>
-
-            <!-- <div class="disabled-clients">
+            <div class="disabled-clients">
                 <div class="title-block">
-                    <h2 class="title">отключенные клиенты</h2>
+                    <h2 class="title collapse" data-target="collapse2">отключенные клиенты</h2>
                 </div>
 
-                <ul class="clients">
+                <ul class="clients" data-id="collapse2">
                     {% for client in disabled_clients %}
                             <li class="client">
                                 <p><a href="{{ client.get_absolute_url }}" class="client-link">{{ client }}</a>{% if client.title_comment %}({{ client.title_comment }}){% endif %}</p>
@@ -124,7 +81,7 @@
                             </li>
                     {% endfor %}
                 </ul>
-            </div> -->
+            </div>
         </section>
 
         <!--section disabled clients end-->
@@ -132,14 +89,13 @@
         <!--section buttons clients start-->
 
             <section class="buttons__clients">
-                <button id="add-client" class="button-st button-blue"><a href="{% url 'clt:client-add' %}" class="button-link">Добавить клиента</a></button>
-                <button id="add-country" class="button-st button-orange">Добавить страну</button>
-                <button id="add-city" class="button-st button-orange">Добавить город</button>
-                <button id="add-number" class="button-st button-orange">Добавить номер телефона</button>
+                <a id="add-client" href="{% url 'clt:client-add' %}" class="button-link button-st button-blue">Добавить клиента</a>
+                <button id="add-country" data-target="country" class="button-st button-orange popup-button">Добавить страну</button>
+                <button id="add-city" data-target="city" class="button-st button-orange popup-button">Добавить город</button>
+                <button id="add-number" data-target="number" class="button-st button-orange popup-button">Добавить номер телефона</button>
             </section>
 
         <!--section buttons clients end-->
-
     </div>
 </main>
 

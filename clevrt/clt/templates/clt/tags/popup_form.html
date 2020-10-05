@@ -1,0 +1,16 @@
+<div class="popup-form" id="popup-{{form_id}}">
+    <form action="" method="post" id="{{form_id}}-form-ajax" class="form-container">
+        <div class="result-form" id="result-{{form_id}}-form"></div>
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="popup-input">
+            <p class="popup-label__p"><label for="{{field.id_for_label}}">{{field.label}}</label>:</p>
+            <p class="popup-input__p">{{field}}</p>
+        </div>
+        {% endfor %}
+        <div class="popup-buttons">
+            <input type="submit" class="add-button" id="add-{{form_id}}-form" name="sbutton" value="{{button_text}}">
+            <button class="cancel-popup" data-target='{{form_id}}' id="cancel-{{form_id}}">Отменить</button>
+        </div>
+    </form>
+</div>
