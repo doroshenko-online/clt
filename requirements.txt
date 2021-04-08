@@ -1,7 +1,7 @@
 asgiref==3.2.10
 astroid==2.4.2
 colorama==0.4.3
-Django==3.1.1
+Django==3.1.8
 django-restframework==0.0.1
 isort==5.5.2
 lazy-object-proxy==1.4.3
